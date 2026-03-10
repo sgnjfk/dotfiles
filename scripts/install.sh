@@ -8,7 +8,7 @@ echo "=== Dotfiles Install ==="
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide bat eza tldr duf btop
+sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide bat eza tldr duf btop neofetch thefuck jq ncdu
 
 # Lazygit
 if ! command -v lazygit &>/dev/null; then

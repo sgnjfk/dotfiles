@@ -124,3 +124,41 @@ z app                    # hoặc vậy, cũng nhảy tới
 | `tldr tar` | Xem ví dụ dùng tar |
 | `tldr git commit` | Xem ví dụ git commit |
 | `tldr --update` | Cập nhật database |
+
+## ncdu (Interactive Disk Usage)
+
+| Key | Action |
+|-----|--------|
+| `ncdu` | Scan folder hiện tại |
+| `ncdu /path` | Scan folder cụ thể |
+| Arrow / hjkl | Di chuyển |
+| `Enter` | Vào subfolder |
+| `d` | Xóa file/folder |
+| `n` | Sort theo tên |
+| `s` | Sort theo size |
+| `q` | Thoát |
+
+## thefuck
+
+Gõ sai lệnh → gõ `fuck` → tự sửa.
+
+```bash
+git brnach        # gõ sai
+fuck              # → git branch
+```
+
+## jq (JSON Processor)
+
+| Command | Action |
+|---------|--------|
+| `cat file.json \| jq .` | Format JSON đẹp |
+| `cat file.json \| jq '.name'` | Lấy field name |
+| `cat file.json \| jq '.items[]'` | Duyệt array |
+| `cat file.json \| jq '.items[] \| .id'` | Lấy id từ mỗi item |
+| `curl api.com \| jq .` | Format API response |
+
+## neofetch
+
+```bash
+neofetch          # Hiện system info đẹp
+```

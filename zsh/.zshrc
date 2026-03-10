@@ -40,6 +40,12 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # zoxide
 eval "$(zoxide init zsh)"
 
+# thefuck (lazy load)
+fuck() {
+  eval "$(thefuck --alias)"
+  fuck "$@"
+}
+
 # ===== Aliases =====
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
 alias open="wslview"
