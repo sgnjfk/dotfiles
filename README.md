@@ -50,6 +50,7 @@ cs nvim    # xem nvim cheatsheet
 cs tmux    # xem tmux cheatsheet
 cs git     # xem git cheatsheet
 cs ssh     # xem ssh cheatsheet
+cs tools   # xem tools cheatsheet (lazygit, fzf, zoxide, bat, eza...)
 cs         # menu chọn
 ```
 
@@ -65,6 +66,15 @@ cs         # menu chọn
 | `zi`  | Zoxide interactive |
 | `Ctrl+r` | fzf — tìm command history |
 | `Ctrl+t` | fzf — tìm file |
+| `cat` | bat — cat có syntax highlight |
+| `catn` | bat — có line numbers + header |
+| `ls` | eza — ls có icon |
+| `ll` | eza — list chi tiết + hidden |
+| `tree` | eza — tree view có icon |
+| `btop` | System monitor |
+| `dust` | Dung lượng folder |
+| `duf` | Dung lượng ổ đĩa |
+| `tldr cmd` | Man page ngắn gọn |
 
 ## Git Aliases
 
