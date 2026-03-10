@@ -123,3 +123,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # OpenClaw Completion
 source "/home/vp/.openclaw/completions/openclaw.zsh"
+
+# ===== Custom Aliases =====
+alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
+alias open="explorer.exe"
