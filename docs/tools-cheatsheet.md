@@ -73,3 +73,54 @@ z app                    # hoặc vậy, cũng nhảy tới
 | `glow file.md` | Render markdown |
 | `glow -p file.md` | Pager mode (cuộn được) |
 | `glow .` | Xem tất cả markdown trong folder |
+
+## bat (`cat` có highlight)
+
+| Command | Action |
+|---------|--------|
+| `cat file.py` | Xem file (đã alias, có syntax highlight) |
+| `catn file.py` | Xem file + line numbers + header |
+| `cat -l json file` | Chỉ định ngôn ngữ highlight |
+
+## eza (`ls` đẹp hơn)
+
+| Command | Action |
+|---------|--------|
+| `ls` | List file có icon (đã alias) |
+| `ll` | List chi tiết + hidden files |
+| `tree` | Tree view có icon |
+| `tree -L 2` | Tree view giới hạn 2 cấp |
+
+## btop (System Monitor)
+
+| Key | Action |
+|-----|--------|
+| `btop` | Mở monitor |
+| `h/l` | Chuyển tab |
+| `f` | Filter process |
+| `k` | Kill process |
+| `s` | Sort |
+| `q` | Thoát |
+
+## dust (Disk Usage)
+
+| Command | Action |
+|---------|--------|
+| `dust` | Xem dung lượng folder hiện tại |
+| `dust -r` | Đảo ngược (nhỏ nhất trước) |
+| `dust -n 5` | Chỉ hiện top 5 |
+| `dust ~/Projects` | Xem folder cụ thể |
+
+## duf (Disk Free)
+
+| Command | Action |
+|---------|--------|
+| `duf` | Xem dung lượng tất cả ổ đĩa |
+
+## tldr (Man page ngắn gọn)
+
+| Command | Action |
+|---------|--------|
+| `tldr tar` | Xem ví dụ dùng tar |
+| `tldr git commit` | Xem ví dụ git commit |
+| `tldr --update` | Cập nhật database |

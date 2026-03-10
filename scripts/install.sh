@@ -8,7 +8,7 @@ echo "=== Dotfiles Install ==="
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide
+sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide bat eza tldr duf btop
 
 # Lazygit
 if ! command -v lazygit &>/dev/null; then
@@ -17,6 +17,14 @@ if ! command -v lazygit &>/dev/null; then
   curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
   cd /tmp && tar xzf lazygit.tar.gz lazygit && sudo install lazygit /usr/local/bin/ && rm lazygit lazygit.tar.gz
   cd -
+fi
+
+# Dust
+if ! command -v dust &>/dev/null; then
+  echo "[deps] Installing dust..."
+  DUST_VERSION=$(curl -s https://api.github.com/repos/bootandy/dust/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo /tmp/dust.deb "https://github.com/bootandy/dust/releases/latest/download/du-dust_${DUST_VERSION}-1_amd64.deb"
+  sudo dpkg -i /tmp/dust.deb && rm /tmp/dust.deb
 fi
 
 # Glow (markdown renderer)
