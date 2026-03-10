@@ -50,6 +50,14 @@
 
 > Hoặc dùng chuột: bôi đen + `Ctrl+C` để copy.
 
+## Session Save/Restore (resurrect)
+| Key                    | Action              |
+|------------------------|---------------------|
+| `Ctrl+a Ctrl+s`        | Save session        |
+| `Ctrl+a Ctrl+r`        | Restore session     |
+
+> Trước khi restart WSL: save. Mở lại: `tmux` → restore.
+
 ## Khác
 | Key / Command          | Action              |
 |------------------------|---------------------|
