@@ -75,6 +75,7 @@ cs         # menu chọn
 | `dust` | Dung lượng folder |
 | `duf` | Dung lượng ổ đĩa |
 | `tldr cmd` | Man page ngắn gọn |
+| `nview` | Nvim read-only mode |
 
 ## Git Aliases
 

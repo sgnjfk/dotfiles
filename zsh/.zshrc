@@ -12,8 +12,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions history sudo)
 source $ZSH/oh-my-zsh.sh
 
-# NVM (lazy load)
+# NVM (lazy load, but keep node in PATH)
 export NVM_DIR="$HOME/.nvm"
+[ -d "$NVM_DIR/versions/node" ] && export PATH="$(find $NVM_DIR/versions/node -maxdepth 1 -type d | sort -V | tail -1)/bin:$PATH"
 lazy_load_nvm() {
   unset -f nvm node npm npx
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -59,3 +60,4 @@ alias catn="batcat"
 alias ls="eza --icons"
 alias ll="eza --icons -la"
 alias tree="eza --icons --tree"
+alias nview="nvim -R"
