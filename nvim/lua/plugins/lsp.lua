@@ -1,84 +1,93 @@
 return {
+  -- Mason
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall" },
+    opts = {},
+  },
+
+  -- Mason-lspconfig
+  {
+    "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "ts_ls",
+        "pyright",
+        "tailwindcss",
+        "html",
+        "cssls",
+        "jsonls",
+      },
+      automatic_installation = true,
+    },
+  },
+
   -- LSP
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "ts_ls",
-          "pyright",
-          "rust_analyzer",
-          "gopls",
-          "tailwindcss",
-          "html",
-          "cssls",
-          "jsonls",
-        },
-        automatic_installation = true,
-      })
-
-      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(_, bufnr)
-        local map = function(keys, func, desc)
-          vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-        end
-        map("gd", vim.lsp.buf.definition, "Go to Definition")
-        map("gr", vim.lsp.buf.references, "References")
-        map("gi", vim.lsp.buf.implementation, "Implementation")
-        map("K", vim.lsp.buf.hover, "Hover")
-        map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-        map("<leader>rn", vim.lsp.buf.rename, "Rename")
-        map("<leader>D", vim.lsp.buf.type_definition, "Type Definition")
-        map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-        map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
-        map("<leader>d", vim.diagnostic.open_float, "Line Diagnostics")
+      -- Default config for all LSP servers
+      vim.lsp.config("*", {
+        capabilities = capabilities,
+      })
+
+      -- Server-specific configs
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+            workspace = { checkThirdParty = false },
+          },
+        },
+      })
+
+      -- Enable all installed servers
+      local servers = { "lua_ls", "ts_ls", "pyright", "tailwindcss", "html", "cssls", "jsonls" }
+      for _, server in ipairs(servers) do
+        vim.lsp.enable(server)
       end
 
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
-        end,
-        ["lua_ls"] = function()
-          lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                diagnostics = { globals = { "vim" } },
-                workspace = { checkThirdParty = false },
-              },
-            },
-          })
+      -- Keymaps on LSP attach
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = args.buf, desc = desc })
+          end
+          map("gd", vim.lsp.buf.definition, "Go to Definition")
+          map("gr", vim.lsp.buf.references, "References")
+          map("gi", vim.lsp.buf.implementation, "Implementation")
+          map("K", vim.lsp.buf.hover, "Hover")
+          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+          map("<leader>rn", vim.lsp.buf.rename, "Rename")
+          map("<leader>D", vim.lsp.buf.type_definition, "Type Definition")
+          map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+          map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
+          map("<leader>d", vim.diagnostic.open_float, "Line Diagnostics")
         end,
       })
 
       -- Diagnostic signs
-      local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl })
-      end
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = "󰌵 ",
+            [vim.diagnostic.severity.INFO] = " ",
+          },
+        },
+      })
     end,
-  },
-
-  -- Mason
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    opts = {},
   },
 
   -- Autocompletion
@@ -157,20 +166,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      ensure_installed = {
-        "lua", "vim", "vimdoc",
-        "javascript", "typescript", "tsx",
-        "python", "rust", "go",
-        "html", "css", "json", "yaml", "toml", "markdown",
-        "bash", "dockerfile",
-      },
-      highlight = { enable = true },
-      indent = { enable = true },
-      auto_install = true,
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+    config = function()
+      require("nvim-treesitter").setup()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end,
   },
 
