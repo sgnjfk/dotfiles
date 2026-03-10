@@ -40,6 +40,9 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # zoxide
 eval "$(zoxide init zsh)"
 
+# Autosuggestion accept
+bindkey '^ ' autosuggest-accept
+
 # thefuck (lazy load)
 fuck() {
   eval "$(thefuck --alias)"
