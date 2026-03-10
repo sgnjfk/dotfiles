@@ -125,7 +125,8 @@ export NVM_DIR="$HOME/.nvm"
 source "/home/vp/.openclaw/completions/openclaw.zsh"
 
 # ===== fzf =====
-source <(fzf --zsh)
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 
 # ===== zoxide (smart cd) =====
 eval "$(zoxide init zsh)"

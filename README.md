@@ -49,6 +49,7 @@ Lần đầu mở `nvim`, chờ ~1-2 phút để lazy.nvim cài plugins và Maso
 cs nvim    # xem nvim cheatsheet
 cs tmux    # xem tmux cheatsheet
 cs git     # xem git cheatsheet
+cs ssh     # xem ssh cheatsheet
 cs         # menu chọn
 ```
 
@@ -59,6 +60,11 @@ cs         # menu chọn
 | `cs`  | Xem cheatsheet |
 | `open`| Mở file bằng app Windows (wslview) |
 | `cl`  | Clear terminal |
+| `lg`  | Lazygit |
+| `z folder` | Zoxide — smart cd |
+| `zi`  | Zoxide interactive |
+| `Ctrl+r` | fzf — tìm command history |
+| `Ctrl+t` | fzf — tìm file |
 
 ## Git Aliases
 

@@ -46,7 +46,7 @@
 | `v`                    | Bắt đầu select     |
 | `y`                    | Copy (vào clipboard Windows) |
 | `Ctrl+a ]`             | Paste               |
-| `q`                    | Thoát copy mode     |
+| `q` / `Esc`            | Thoát copy mode     |
 
 > Hoặc dùng chuột: bôi đen + `Ctrl+C` để copy.
 
