@@ -1,0 +1,9 @@
+# SSH keys
+ssh/id_*
+ssh/known_hosts*
+
+# Environment secrets
+.env
+*.secret
+*.key
+*.pem

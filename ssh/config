@@ -1,0 +1,24 @@
+# === Defaults ===
+Host *
+    # Giữ kết nối sống, không bị timeout
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    # Tự thêm key vào agent
+    AddKeysToAgent yes
+    # Dùng chung 1 connection cho nhiều session
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h-%p
+    ControlPersist 600
+
+# === GitHub ===
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+
+# === Server templates (thêm server ở đây) ===
+# Host my-server
+#     HostName 123.456.789.0
+#     User root
+#     IdentityFile ~/.ssh/id_ed25519
+#     Port 22

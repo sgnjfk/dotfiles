@@ -1,6 +1,6 @@
 # Dotfiles
 
-Dev environment setup: Neovim + Tmux + Zsh trên WSL.
+Dev environment setup: Neovim + Tmux + Zsh + Git + SSH + Claude Code trên WSL.
 
 ## Cài đặt
 
@@ -10,7 +10,7 @@ git clone https://github.com/sgnjfk/dotfiles ~/dotfiles
 source ~/.zshrc
 ```
 
-Script sẽ tự cài: Neovim (latest), Tmux, Glow, wslu, win32yank, Catppuccin tmux theme, rồi link tất cả config.
+Script tự cài: Neovim (latest), Tmux, Glow, wslu, win32yank, Mosh, Catppuccin tmux theme, rồi link tất cả config.
 
 Lần đầu mở `nvim`, chờ ~1-2 phút để lazy.nvim cài plugins và Mason cài LSP servers.
 
@@ -27,6 +27,13 @@ Lần đầu mở `nvim`, chờ ~1-2 phút để lazy.nvim cài plugins và Maso
 │   └── tmux.conf      → ~/.tmux.conf
 ├── zsh/
 │   └── .zshrc         → ~/.zshrc
+├── git/
+│   └── .gitconfig     → ~/.gitconfig
+├── ssh/
+│   └── config         → ~/.ssh/config
+├── claude/
+│   ├── settings.json  → ~/.claude/settings.json
+│   └── CLAUDE.md      → ~/.claude/CLAUDE.md
 ├── scripts/
 │   ├── install.sh     (cài đặt + link config)
 │   └── cheatsheet.sh  (xem cheatsheet)
@@ -52,6 +59,18 @@ cs         # menu chọn
 | `cs`  | Xem cheatsheet |
 | `open`| Mở file bằng app Windows (wslview) |
 | `cl`  | Clear terminal |
+
+## Git Aliases
+
+| Alias | Lệnh |
+|-------|-------|
+| `git s` | `git status` |
+| `git co` | `git checkout` |
+| `git br` | `git branch` |
+| `git cm "msg"` | `git commit -m "msg"` |
+| `git lg` | Log dạng cây |
+| `git last` | Xem commit cuối |
+| `git undo` | Undo commit cuối |
 
 ## Neovim
 
@@ -80,7 +99,7 @@ cs         # menu chọn
 
 ## Tmux
 
-**Prefix:** `Ctrl+a`
+**Prefix:** `Ctrl+a` | **Theme:** Catppuccin Mocha
 
 | Key | Action |
 |-----|--------|
@@ -93,8 +112,21 @@ cs         # menu chọn
 | `Ctrl+a s` | Chọn session |
 | `Ctrl+a r` | Reload config |
 
+## SSH
+
+- ControlMaster: dùng chung connection, connect lại tức thì
+- ServerAliveInterval: heartbeat mỗi 60s, không bị timeout
+- Mosh: `mosh user@server` — tự reconnect khi mạng đứt
+
+## Claude Code
+
+- Global rules: `claude/CLAUDE.md`
+- Per-project rules: đặt `CLAUDE.md` trong thư mục project
+- Per-project override global nếu conflict
+
 ## Thêm tool mới
 
 1. Tạo folder trong `~/dotfiles/`
-2. Thêm symlink vào `scripts/install.sh`
-3. Commit & push
+2. Copy config vào
+3. Thêm symlink vào `scripts/install.sh`
+4. Commit & push

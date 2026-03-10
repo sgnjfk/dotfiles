@@ -8,7 +8,7 @@ echo "=== Dotfiles Install ==="
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu
+sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh
 
 # Glow (markdown renderer)
 if ! command -v glow &>/dev/null; then
@@ -46,6 +46,25 @@ fi
 
 echo ""
 echo "=== Linking configs ==="
+
+# Git
+echo "[git] Linking config..."
+ln -sf "$DOTFILES/git/.gitconfig" ~/.gitconfig
+echo "[git] Done"
+
+# SSH
+echo "[ssh] Linking config..."
+mkdir -p ~/.ssh/sockets
+ln -sf "$DOTFILES/ssh/config" ~/.ssh/config
+chmod 600 ~/.ssh/config
+echo "[ssh] Done"
+
+# Claude Code
+echo "[claude] Linking config..."
+mkdir -p ~/.claude
+ln -sf "$DOTFILES/claude/settings.json" ~/.claude/settings.json
+ln -sf "$DOTFILES/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+echo "[claude] Done"
 
 # Neovim
 echo "[nvim] Linking config..."

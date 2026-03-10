@@ -1,0 +1,39 @@
+[user]
+	name = sgnjfk
+	email = sgnjfk@gmail.com
+
+[credential "https://github.com"]
+	helper =
+	helper = !/home/vp/.local/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/home/vp/.local/bin/gh auth git-credential
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	autocrlf = input
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+[alias]
+	s = status
+	co = checkout
+	br = branch
+	cm = commit -m
+	lg = log --oneline --graph --all
+	last = log -1 HEAD
+	undo = reset HEAD~1 --mixed
