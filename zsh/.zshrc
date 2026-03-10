@@ -124,7 +124,14 @@ export NVM_DIR="$HOME/.nvm"
 # OpenClaw Completion
 source "/home/vp/.openclaw/completions/openclaw.zsh"
 
+# ===== fzf =====
+source <(fzf --zsh)
+
+# ===== zoxide (smart cd) =====
+eval "$(zoxide init zsh)"
+
 # ===== Custom Aliases =====
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
 alias open="wslview"
 alias cl="clear"
+alias lg="lazygit"

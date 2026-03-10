@@ -8,7 +8,16 @@ echo "=== Dotfiles Install ==="
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh
+sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide
+
+# Lazygit
+if ! command -v lazygit &>/dev/null; then
+  echo "[deps] Installing lazygit..."
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  cd /tmp && tar xzf lazygit.tar.gz lazygit && sudo install lazygit /usr/local/bin/ && rm lazygit lazygit.tar.gz
+  cd -
+fi
 
 # Glow (markdown renderer)
 if ! command -v glow &>/dev/null; then
