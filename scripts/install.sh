@@ -5,6 +5,48 @@ DOTFILES="$HOME/dotfiles"
 
 echo "=== Dotfiles Install ==="
 
+# Dependencies
+echo "[deps] Installing dependencies..."
+sudo apt-get update -qq
+sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu
+
+# Glow (markdown renderer)
+if ! command -v glow &>/dev/null; then
+  echo "[deps] Installing glow..."
+  sudo mkdir -p /etc/apt/keyrings
+  curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+  echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list > /dev/null
+  sudo apt-get update -qq
+  sudo apt-get install -y -qq glow
+fi
+
+# Neovim (latest)
+echo "[nvim] Installing latest neovim..."
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+tar xzf nvim-linux-x86_64.tar.gz
+sudo cp -rf nvim-linux-x86_64/* /usr/local/
+rm -rf nvim-linux-x86_64 nvim-linux-x86_64.tar.gz
+echo "[nvim] $(nvim --version | head -1)"
+
+# win32yank (WSL clipboard)
+if ! command -v win32yank.exe &>/dev/null; then
+  echo "[deps] Installing win32yank..."
+  curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip
+  cd /tmp && unzip -o win32yank.zip win32yank.exe
+  chmod +x win32yank.exe
+  sudo mv win32yank.exe /usr/local/bin/
+  cd -
+fi
+
+# Catppuccin tmux theme
+if [ ! -d "$HOME/.config/tmux/plugins/catppuccin-tmux" ]; then
+  echo "[tmux] Installing catppuccin theme..."
+  git clone https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin-tmux
+fi
+
+echo ""
+echo "=== Linking configs ==="
+
 # Neovim
 echo "[nvim] Linking config..."
 mkdir -p ~/.config
