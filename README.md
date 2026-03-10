@@ -126,7 +126,11 @@ cs         # menu chọn
 | `Ctrl+a [` | Copy mode (vi-style) |
 | `v` → `y` | Select → copy (clipboard Windows) |
 | `Ctrl+a s` | Chọn session |
+| `Ctrl+a Ctrl+s` | Save session |
+| `Ctrl+a Ctrl+r` | Restore session |
 | `Ctrl+a r` | Reload config |
+
+> Session tự save mỗi 15 phút và tự restore khi mở tmux.
 
 ## SSH
 

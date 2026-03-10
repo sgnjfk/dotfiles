@@ -50,13 +50,15 @@
 
 > Hoặc dùng chuột: bôi đen + `Ctrl+C` để copy.
 
-## Session Save/Restore (resurrect)
-| Key                    | Action              |
+## Session Save/Restore
+| Key / Setting          | Action              |
 |------------------------|---------------------|
-| `Ctrl+a Ctrl+s`        | Save session        |
+| `Ctrl+a Ctrl+s`        | Save session (thủ công) |
 | `Ctrl+a Ctrl+r`        | Restore session     |
+| Auto save              | Mỗi 15 phút (continuum) |
+| Auto restore           | Tự khôi phục khi mở tmux |
 
-> Trước khi restart WSL: save. Mở lại: `tmux` → restore.
+> Không cần nhớ save — tự động. Restart WSL xong mở `tmux` là session tự quay lại.
 
 ## Khác
 | Key / Command          | Action              |
