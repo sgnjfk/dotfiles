@@ -19,11 +19,13 @@
 | `Ctrl+a |`             | Split dọc           |
 | `Ctrl+a -`             | Split ngang         |
 | `Ctrl+a x`             | Đóng pane (confirm) |
-| `Alt+Arrow`            | Chuyển pane (ko cần prefix) |
+| `Alt+h/j/k/l`          | Chuyển pane (ko cần prefix) |
 | `Ctrl+a z`             | Zoom pane (full screen toggle) |
 | `Ctrl+a Space`         | Đổi layout          |
 | `Ctrl+a : resize-pane -D/U/L/R N` | Resize N cells |
 | `Ctrl+a : split-window -v -f` | Pane ngang full width |
+
+> Pane active sáng bình thường, pane inactive tối hơn.
 
 ## Window (Tab)
 | Key                    | Action              |
@@ -35,15 +37,18 @@
 | `Ctrl+a &`             | Đóng window          |
 | `Ctrl+a w`             | Chọn window (list)   |
 
-## Copy mode
+## Copy mode (vi-style)
 | Key                    | Action              |
 |------------------------|---------------------|
 | `Ctrl+a [`             | Vào copy mode       |
-| `q`                    | Thoát copy mode     |
-| Arrow / hjkl           | Di chuyển           |
-| `Space`                | Bắt đầu select     |
-| `Enter`                | Copy selection      |
+| `h j k l`              | Di chuyển           |
+| `/`                    | Tìm text            |
+| `v`                    | Bắt đầu select     |
+| `y`                    | Copy (vào clipboard Windows) |
 | `Ctrl+a ]`             | Paste               |
+| `q`                    | Thoát copy mode     |
+
+> Hoặc dùng chuột: bôi đen + `Ctrl+C` để copy.
 
 ## Khác
 | Key / Command          | Action              |
