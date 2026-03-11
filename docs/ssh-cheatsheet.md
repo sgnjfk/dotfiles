@@ -1,25 +1,24 @@
 # SSH & Mosh
 
 ## Kết nối
-`ssh user@host` SSH
-`ssh my-server` Dùng alias
-`mosh user@host` Tự reconnect
-`ssh -p 2222 user@host` Port khác
+`ssh user@host` Kết nối SSH tới server
+`ssh my-server` Kết nối SSH dùng alias
+`mosh user@host` Kết nối Mosh (tự reconnect)
+`ssh -p 2222 user@host` SSH qua port khác
 
 ## Key
-`ssh-keygen -t ed25519` Tạo key
-`ssh-copy-id user@host` Copy lên server
-`cat ~/.ssh/id_ed25519.pub` Xem
+`ssh-keygen -t ed25519` Tạo SSH key mới
+`ssh-copy-id user@host` Copy public key lên server
+`cat ~/.ssh/id_ed25519.pub` Xem public key
 
-## Copy file
-`scp file user@host:/path/` Upload
-`scp user@host:/path/f .` Download
-`scp -r dir/ user@host:/p/` Folder
+## Copy file qua SSH
+`scp file user@host:/path/` Upload file lên server
+`scp user@host:/path/f .` Download file từ server
+`scp -r dir/ user@host:/p/` Upload cả folder
 
 ## Tunnel
-`ssh -L 8080:localhost:3000 host`
-→ local:8080 tới remote:3000
-`ssh -D 1080 host` SOCKS proxy
+`ssh -L 8080:localhost:3000 host` Forward local:8080 tới remote:3000
+`ssh -D 1080 host` Tạo SOCKS proxy qua SSH
 
 ## Config (~/.ssh/config)
 ```
@@ -31,6 +30,6 @@ Host my-server
 Sau đó: `ssh my-server`
 
 ## Mosh vs SSH
-Mạng đứt: SSH mất, Mosh reconnect
-Đổi IP: SSH mất, Mosh sống
-Port forward: chỉ SSH có
+Mạng đứt: SSH mất kết nối, Mosh tự reconnect
+Đổi IP/wifi: SSH mất, Mosh vẫn sống
+Port forward/tunnel: chỉ SSH hỗ trợ

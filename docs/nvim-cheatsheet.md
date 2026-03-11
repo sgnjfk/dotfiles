@@ -1,83 +1,84 @@
 # Neovim
 
 ## Modes
-`Esc` Normal
+`Esc` Về Normal mode
 `i` Insert trước cursor
 `a` Insert sau cursor
-`v` Visual
-`V` Visual Line
-`:` Command
+`v` Visual mode (chọn ký tự)
+`V` Visual Line mode (chọn dòng)
+`:` Command mode
 
 ## Di chuyển
 `hjkl` Trái/Xuống/Lên/Phải
-`w/b` Từ tiếp/trước
-`0/$` Đầu/cuối dòng
-`gg/G` Đầu/cuối file
+`w/b` Nhảy từ tiếp/trước
+`0/$` Đầu dòng/cuối dòng
+`gg/G` Đầu file/cuối file
 `C-d/u` Nửa trang xuống/lên
 `{/}` Paragraph trước/sau
-`%` Ngoặc đối diện
+`%` Nhảy ngoặc đối diện
 
 ## Chỉnh sửa
-`i/a` Insert trước/sau
-`o/O` Dòng mới dưới/trên
-`x` Xóa ký tự
-`dd` Xóa dòng
+`i/a` Insert trước/sau cursor
+`o/O` Thêm dòng mới dưới/trên
+`x` Xóa 1 ký tự
+`dd` Xóa 1 dòng
+`5dd` Xóa 5 dòng
 `yy` Copy dòng
-`p/P` Paste dưới/trên
+`p/P` Paste dưới/trên cursor
 `u` Undo
 `C-r` Redo
-`ciw` Đổi từ
-`di"` Xóa trong ""
-`5dd` Xóa 5 dòng
+`ciw` Đổi nội dung 1 từ
+`di"` Xóa nội dung trong ""
 
 ## Lưu & Thoát
-`:w` Save
-`:q` Quit
-`:wq` Save & quit
-`:q!` Quit ko save
-`SPC w` Save
-`SPC q` Quit
+`:w` Save file
+`:q` Quit nvim
+`:wq` Save và quit
+`:q!` Quit không save
+`SPC w` Save file (shortcut)
+`SPC q` Quit nvim (shortcut)
 
 ## Tìm kiếm
-`SPC ff` Tìm file
-`SPC fg` Grep text
-`SPC fb` Buffers
-`SPC fr` File gần đây
-`SPC /` Tìm trong file
-`/text` Tìm trong file
-`n/N` Tiếp/trước
+`SPC ff` Tìm file (Telescope)
+`SPC fg` Grep text toàn project
+`SPC fb` Chuyển buffer (Telescope)
+`SPC fr` File mở gần đây
+`SPC /` Tìm text trong project
+`/text` Tìm text trong file hiện tại
+`n/N` Kết quả tìm tiếp/trước
 
 ## LSP
-`gd` Definition
-`gr` References
-`gi` Implementation
-`K` Hover docs
+`gd` Đi tới definition
+`gr` Xem references
+`gi` Đi tới implementation
+`K` Hover xem docs
 `SPC ca` Code action
-`SPC rn` Rename
+`SPC rn` Rename symbol
 `SPC D` Type definition
-`SPC d` Diagnostics
-`[d/]d` Diag trước/sau
-`SPC cf` Format
+`SPC d` Xem diagnostics
+`[d/]d` Diagnostic trước/sau
+`SPC cf` Format code
 
 ## File & Window
-`SPC e` File explorer
+`SPC e` Mở file explorer (Neo-tree)
 `S-H/S-L` Buffer trước/sau
-`SPC bd` Đóng buffer
-`:vsplit` Split dọc
-`:split` Split ngang
-`C-hjkl` Chuyển pane
+`SPC bd` Đóng buffer hiện tại
+`:vsplit` Split window dọc
+`:split` Split window ngang
+`C-hjkl` Chuyển giữa các window
 
 ## Tiện ích
-`gcc` Comment dòng
-`gc` Comment chọn
-`C-\` Terminal float
-`SPC th` Terminal ngang
-`C-a` Select all
-`SPC` Which-key
+`gcc` Comment/uncomment 1 dòng
+`gc` Comment/uncomment vùng chọn
+`C-\` Mở terminal float
+`SPC th` Mở terminal ngang
+`C-a` Select all text
+`SPC` Mở Which-key (xem phím tắt)
+`nview file` Mở file read-only
 
 ## Autocomplete
-`Tab` Gợi ý tiếp
-`S-Tab` Gợi ý trước
-`Enter` Confirm
-`C-Space` Mở menu
-`C-e` Đóng menu
+`Tab` Gợi ý autocomplete tiếp
+`S-Tab` Gợi ý autocomplete trước
+`Enter` Chọn gợi ý autocomplete
+`C-Space` Mở menu autocomplete
+`C-e` Đóng menu autocomplete

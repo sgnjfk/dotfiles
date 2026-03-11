@@ -3,51 +3,46 @@
 Prefix: `C-a`
 
 ## Session
-`tmux new -s name` Tạo
-`tmux ls` List
-`tmux attach -t name` Attach
-`tmux kill-session -t name` Xóa
+`tmux new -s name` Tạo session mới
+`tmux ls` List sessions
+`tmux attach -t name` Attach vào session
+`tmux kill-session -t name` Xóa session
 `C-a $` Rename session
-`C-a d` Detach
-`C-a s` Chọn session
+`C-a d` Detach session
+`C-a s` Chọn session (picker)
 
 ## Pane
-`C-a |` Split dọc
-`C-a -` Split ngang
+`C-a |` Split pane dọc
+`C-a -` Split pane ngang
 `C-a x` Đóng pane
 `Alt+hjkl` Chuyển pane
-`C-a z` Zoom toggle
-`C-a Space` Đổi layout
+`C-a z` Zoom/unzoom pane
+`C-a Space` Đổi layout pane
 
-Active sáng, inactive tối.
+Active pane sáng, inactive tối.
 
 ## Window
-`C-a c` Tạo window
-`C-a ,` Rename
-`C-a n/p` Tiếp/trước
-`C-a 1-9` Nhảy tới N
-`C-a &` Đóng
-`C-a w` List windows
+`C-a c` Tạo window mới
+`C-a ,` Rename window
+`C-a n/p` Window tiếp/trước
+`C-a 1-9` Nhảy tới window N
+`C-a &` Đóng window
+`C-a w` List tất cả windows
 
 ## Copy mode (vi)
 `C-a [` Vào copy mode
-`hjkl` Di chuyển
-`/` Tìm text
-`v` Bắt đầu chọn
-`y` Copy → clipboard
-`C-a ]` Paste
-`q/Esc` Thoát
+`hjkl` Di chuyển trong copy mode
+`/` Tìm text trong copy mode
+`v` Bắt đầu chọn text
+`y` Copy text → clipboard
+`C-a ]` Paste từ buffer
+`q/Esc` Thoát copy mode
 
 Hoặc: bôi chuột + Ctrl+C.
 
-## Save/Restore
-`C-a C-s` Save thủ công
-`C-a C-r` Restore
-Auto save mỗi 5 phút.
-`tsave` Xem lần save cuối
-`tss` Save ngay
-
-## Khác
-`C-a r` Reload config
-`C-a ?` Tất cả keybindings
-`C-a t` Đồng hồ
+## Save/Restore session
+`C-a C-s` Save session thủ công
+`C-a C-r` Restore session
+Auto save session mỗi 5 phút.
+`tsave` Xem lần save session cuối
+`tss` Save session ngay

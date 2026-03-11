@@ -52,6 +52,7 @@ fuck() {
 
 # ===== Aliases =====
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
+csf() { grep -H '.' ~/dotfiles/docs/*-cheatsheet.md | sed 's|.*/\(.*\)-cheatsheet.md:|\1: |' | fzf --query="$*"; }
 alias open="wslview"
 alias cl="clear"
 alias lg="lazygit"
@@ -63,3 +64,8 @@ alias tree="eza --icons --tree"
 alias nview="nvim -R"
 alias tsave="ls -la ~/.local/share/tmux/resurrect/last"
 alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh && echo 'Session saved!' && tsave"
+
+# AI quick query (non-interactive)
+ask() { claude -p "$*"; }
+askg() { gemini -p "$*"; }
+askx() { codex exec --skip-git-repo-check "$*"; }

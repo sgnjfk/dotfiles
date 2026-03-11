@@ -1,69 +1,78 @@
 # Tools
 
 ## Lazygit (`lg`)
-`Space` Stage/unstage
-`c` Commit
-`p` Push
-`P` Pull
-`Enter` Xem diff
-`[/]` Chuyển tab
-`a` Stage all
-`d` Discard
-`b` Checkout branch
-`n` New branch
-`z` Undo
-`?` Help
-`q` Thoát
+`Space` Stage/unstage file trong lazygit
+`c` Commit trong lazygit
+`p` Push trong lazygit
+`P` Pull trong lazygit
+`Enter` Xem diff trong lazygit
+`[/]` Chuyển tab trong lazygit
+`a` Stage all trong lazygit
+`d` Discard changes trong lazygit
+`b` Checkout branch trong lazygit
+`n` Tạo branch mới trong lazygit
+`z` Undo trong lazygit
+`?` Mở help lazygit
+`q` Thoát lazygit
 
 ## fzf
-`C-r` Tìm history
-`C-t` Tìm file
-`Alt+c` cd subfolder
-`C-j/k` Lên/xuống
-`Enter` Chọn
-`Esc` Thoát
-`Tab` Multi-select
+`C-r` Tìm command history (fzf)
+`C-t` Tìm file (fzf)
+`Alt+c` cd vào subfolder (fzf)
+`C-j/k` Di chuyển lên/xuống trong fzf
+`Enter` Chọn kết quả fzf
+`Esc` Thoát fzf
+`Tab` Multi-select trong fzf
 
 ## zoxide
-`z foo` Nhảy tới "foo"
-`z foo bar` Match cả hai
-`zi` Interactive
-`z -` Folder trước
+`z foo` Nhảy tới folder chứa "foo"
+`z foo bar` Nhảy tới folder match cả hai
+`zi` Chọn folder interactive (zoxide)
+`z -` Quay lại folder trước (zoxide)
 
-## glow
-`glow file.md` Render
-`glow -p file.md` Pager
+## glow (render markdown)
+`glow file.md` Render markdown ra terminal
+`glow -p file.md` Render markdown có pager
 
-## bat (`cat`)
-`cat file` Highlight
-`catn file` + line numbers
+## bat (`cat` với syntax highlight)
+`cat file` Xem file có syntax highlight (bat)
+`catn file` Xem file có line numbers (bat)
 
-## eza (`ls`)
-`ls` List + icon
-`ll` Chi tiết + hidden
-`tree` Tree view
-`tree -L 2` 2 cấp
+## eza (`ls` với icons)
+`ls` List file có icons (eza)
+`ll` List chi tiết + hidden files (eza)
+`tree` Tree view folder (eza)
+`tree -L 2` Tree view 2 cấp (eza)
 
-## btop
-`btop` Mở monitor
-`f` Filter
-`k` Kill process
-`q` Thoát
+## btop (system monitor)
+`btop` Mở system monitor
+`f` Filter process trong btop
+`k` Kill process trong btop
+`q` Thoát btop
 
-## dust/duf/ncdu
-`dust` Dung lượng folder
-`duf` Dung lượng ổ đĩa
-`ncdu` Interactive (xóa được)
+## dust/duf/ncdu (disk usage)
+`dust` Xem dung lượng folder (tree)
+`duf` Xem dung lượng ổ đĩa
+`ncdu` Xem dung lượng interactive (xóa được)
 
-## tldr
-`tldr tar` Ví dụ tar
-`tldr --update` Cập nhật
+## tldr (man page ngắn gọn)
+`tldr tar` Xem ví dụ lệnh tar
+`tldr --update` Cập nhật database tldr
 
-## thefuck
-Gõ sai → `fuck` → tự sửa
+## thefuck (tự sửa lệnh sai)
+Gõ sai lệnh → `fuck` → tự sửa lệnh
 
-## jq
-`cat f.json | jq .` Format
-`cat f.json | jq '.name'` Field
-`cat f.json | jq '.items[]'` Array
-`curl api | jq .` API
+## jq (xử lý JSON)
+`cat f.json | jq .` Format JSON
+`cat f.json | jq '.name'` Lấy 1 field từ JSON
+`cat f.json | jq '.items[]'` Lấy array từ JSON
+`curl api | jq .` Format JSON từ API
+
+## AI quick query
+`ask "câu hỏi"` Hỏi Claude (non-interactive)
+`askg "câu hỏi"` Hỏi Gemini (non-interactive)
+`askx "câu hỏi"` Hỏi Codex (non-interactive)
+
+## Cheatsheet
+`cs tmux` Xem cheatsheet (glow)
+`csf rename session` Tìm nhanh trong cheatsheet (fzf)
