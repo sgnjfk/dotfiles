@@ -1,51 +1,36 @@
-# SSH & Mosh Cheatsheet
+# SSH & Mosh
 
 ## Kết nối
-| Lệnh | Action |
-|------|--------|
-| `ssh user@host` | SSH |
-| `ssh my-server` | Dùng alias |
-| `mosh user@host` | Mosh (tự reconnect) |
-| `ssh -p 2222 user@host` | Port khác |
+`ssh user@host` SSH
+`ssh my-server` Dùng alias
+`mosh user@host` Tự reconnect
+`ssh -p 2222 user@host` Port khác
 
-## SSH Key
-| Lệnh | Action |
-|------|--------|
-| `ssh-keygen -t ed25519` | Tạo key |
-| `ssh-copy-id user@host` | Copy key lên server |
-| `cat ~/.ssh/id_ed25519.pub` | Xem public key |
+## Key
+`ssh-keygen -t ed25519` Tạo key
+`ssh-copy-id user@host` Copy lên server
+`cat ~/.ssh/id_ed25519.pub` Xem
 
 ## Copy file
-| Lệnh | Action |
-|------|--------|
-| `scp file user@host:/path/` | Upload |
-| `scp user@host:/path/file .` | Download |
-| `scp -r folder/ user@host:/path/` | Upload folder |
+`scp file user@host:/path/` Upload
+`scp user@host:/path/f .` Download
+`scp -r dir/ user@host:/p/` Folder
 
 ## Tunnel
-| Lệnh | Action |
-|------|--------|
-| `ssh -L 8080:localhost:3000 user@host` | Port forward |
-| `ssh -D 1080 user@host` | SOCKS proxy |
+`ssh -L 8080:localhost:3000 host`
+→ local:8080 tới remote:3000
+`ssh -D 1080 host` SOCKS proxy
 
-## SSH Config (`~/.ssh/config`)
+## Config (~/.ssh/config)
 ```
 Host my-server
-    HostName 123.456.789.0
+    HostName 1.2.3.4
     User root
     IdentityFile ~/.ssh/id_ed25519
 ```
 Sau đó: `ssh my-server`
 
-## Connection
-| Lệnh | Action |
-|------|--------|
-| `ssh -O check host` | Check connection |
-| `ssh -O exit host` | Đóng connection |
-
 ## Mosh vs SSH
-| | SSH | Mosh |
-|--|-----|------|
-| Mạng đứt | Mất | Tự reconnect |
-| Đổi IP | Mất | Vẫn sống |
-| Port forward | Có | Không |
+Mạng đứt: SSH mất, Mosh reconnect
+Đổi IP: SSH mất, Mosh sống
+Port forward: chỉ SSH có
