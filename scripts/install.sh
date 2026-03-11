@@ -2,13 +2,31 @@
 set -e
 
 DOTFILES="$HOME/dotfiles"
+IS_WSL=$(grep -qi microsoft /proc/version 2>/dev/null && echo true || echo false)
 
 echo "=== Dotfiles Install ==="
+echo "[info] WSL detected: $IS_WSL"
+
+# Backup existing configs
+echo "[backup] Backing up existing configs..."
+BACKUP_DIR="$HOME/dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$BACKUP_DIR"
+[ -f ~/.zshrc ] && cp ~/.zshrc "$BACKUP_DIR/.zshrc.bak"
+[ -f ~/.tmux.conf ] && cp ~/.tmux.conf "$BACKUP_DIR/.tmux.conf.bak"
+[ -f ~/.gitconfig ] && cp ~/.gitconfig "$BACKUP_DIR/.gitconfig.bak"
+[ -d ~/.config/nvim ] && cp -r ~/.config/nvim "$BACKUP_DIR/nvim.bak"
+[ -f ~/.ssh/config ] && cp ~/.ssh/config "$BACKUP_DIR/ssh_config.bak"
+echo "[backup] Saved to $BACKUP_DIR"
 
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq neovim tmux git curl unzip ripgrep fd-find wslu mosh fzf zoxide bat eza tldr duf btop neofetch thefuck jq ncdu
+sudo apt-get install -y -qq tmux git curl unzip ripgrep fd-find mosh fzf zoxide bat eza tldr duf btop neofetch thefuck jq ncdu
+
+# WSL-only packages
+if [ "$IS_WSL" = true ]; then
+  sudo apt-get install -y -qq wslu
+fi
 
 # Lazygit
 if ! command -v lazygit &>/dev/null; then
@@ -45,8 +63,8 @@ sudo cp -rf nvim-linux-x86_64/* /usr/local/
 rm -rf nvim-linux-x86_64 nvim-linux-x86_64.tar.gz
 echo "[nvim] $(nvim --version | head -1)"
 
-# win32yank (WSL clipboard)
-if ! command -v win32yank.exe &>/dev/null; then
+# win32yank (WSL clipboard only)
+if [ "$IS_WSL" = true ] && ! command -v win32yank.exe &>/dev/null; then
   echo "[deps] Installing win32yank..."
   curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip
   cd /tmp && unzip -o win32yank.zip win32yank.exe
@@ -55,10 +73,19 @@ if ! command -v win32yank.exe &>/dev/null; then
   cd -
 fi
 
-# Catppuccin tmux theme
+# Tmux plugins
+mkdir -p ~/.config/tmux/plugins
 if [ ! -d "$HOME/.config/tmux/plugins/catppuccin-tmux" ]; then
   echo "[tmux] Installing catppuccin theme..."
   git clone https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin-tmux
+fi
+if [ ! -d "$HOME/.config/tmux/plugins/tmux-resurrect" ]; then
+  echo "[tmux] Installing tmux-resurrect..."
+  git clone https://github.com/tmux-plugins/tmux-resurrect ~/.config/tmux/plugins/tmux-resurrect
+fi
+if [ ! -d "$HOME/.config/tmux/plugins/tmux-continuum" ]; then
+  echo "[tmux] Installing tmux-continuum..."
+  git clone https://github.com/tmux-plugins/tmux-continuum ~/.config/tmux/plugins/tmux-continuum
 fi
 
 echo ""
@@ -86,6 +113,9 @@ echo "[claude] Done"
 # Neovim
 echo "[nvim] Linking config..."
 mkdir -p ~/.config
+if [ -d ~/.config/nvim ] && [ ! -L ~/.config/nvim ]; then
+  echo "[nvim] WARNING: existing nvim config backed up to $BACKUP_DIR"
+fi
 rm -rf ~/.config/nvim
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
 echo "[nvim] Done"
@@ -104,5 +134,7 @@ fi
 
 echo ""
 echo "=== All done! ==="
+echo "[info] Backup saved at: $BACKUP_DIR"
 echo "Restart tmux: tmux source ~/.tmux.conf"
 echo "Restart nvim: just open nvim"
+echo "Reload zsh: source ~/.zshrc"
