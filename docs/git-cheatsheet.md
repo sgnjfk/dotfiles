@@ -1,91 +1,85 @@
 # Git Cheatsheet
 
 ## Setup
-| Command | Action |
-|---------|--------|
-| `git init` | Tạo repo mới |
-| `git clone <url>` | Clone repo |
+| Lệnh | Action |
+|------|--------|
+| `git init` | Tạo repo |
+| `git clone <url>` | Clone |
 | `git remote add origin <url>` | Thêm remote |
 
 ## Cơ bản
-| Command | Action |
-|---------|--------|
-| `git status` | Xem trạng thái |
+| Lệnh | Action |
+|------|--------|
+| `git s` | Status |
 | `git add <file>` | Stage file |
-| `git add .` | Stage tất cả |
-| `git commit -m "msg"` | Commit |
-| `git push` | Push lên remote |
-| `git pull` | Pull về |
-| `git fetch` | Fetch (không merge) |
+| `git add .` | Stage all |
+| `git cm "msg"` | Commit |
+| `git push` | Push |
+| `git pull` | Pull |
+| `git fetch` | Fetch |
 
 ## Branch
-| Command | Action |
-|---------|--------|
-| `git branch` | Xem branches |
-| `git branch <name>` | Tạo branch |
-| `git checkout <name>` | Chuyển branch |
-| `git checkout -b <name>` | Tạo + chuyển branch |
-| `git switch <name>` | Chuyển branch (mới) |
-| `git switch -c <name>` | Tạo + chuyển (mới) |
-| `git merge <branch>` | Merge branch vào hiện tại |
-| `git branch -d <name>` | Xóa branch (đã merge) |
-| `git branch -D <name>` | Xóa branch (force) |
+| Lệnh | Action |
+|------|--------|
+| `git br` | Xem branches |
+| `git br <name>` | Tạo branch |
+| `git co <name>` | Chuyển branch |
+| `git co -b <name>` | Tạo + chuyển |
+| `git merge <branch>` | Merge |
+| `git br -d <name>` | Xóa branch |
 
-## Xem lịch sử
-| Command | Action |
-|---------|--------|
-| `git log` | Xem log |
-| `git log --oneline` | Log ngắn gọn |
-| `git log --graph --oneline` | Log dạng cây |
-| `git diff` | Xem thay đổi chưa stage |
-| `git diff --staged` | Xem thay đổi đã stage |
-| `git show <commit>` | Xem chi tiết commit |
+## Lịch sử
+| Lệnh | Action |
+|------|--------|
+| `git lg` | Log cây |
+| `git last` | Commit cuối |
+| `git diff` | Xem thay đổi |
+| `git diff --staged` | Đã stage |
+| `git show <commit>` | Chi tiết commit |
 | `git blame <file>` | Ai sửa dòng nào |
 
 ## Undo
-| Command | Action |
-|---------|--------|
-| `git restore <file>` | Bỏ thay đổi chưa stage |
-| `git restore --staged <file>` | Unstage file |
+| Lệnh | Action |
+|------|--------|
+| `git restore <file>` | Bỏ thay đổi |
+| `git restore --staged <file>` | Unstage |
 | `git commit --amend` | Sửa commit cuối |
-| `git reset HEAD~1` | Undo commit cuối (giữ changes) |
-| `git reset --hard HEAD~1` | Undo commit cuối (xóa changes) |
-| `git revert <commit>` | Tạo commit đảo ngược |
+| `git undo` | Undo commit cuối |
+| `git reset --hard HEAD~1` | Undo + xóa |
+| `git revert <commit>` | Đảo ngược |
 
 ## Stash
-| Command | Action |
-|---------|--------|
-| `git stash` | Cất thay đổi tạm |
-| `git stash pop` | Lấy lại thay đổi |
-| `git stash list` | Xem danh sách stash |
+| Lệnh | Action |
+|------|--------|
+| `git stash` | Cất tạm |
+| `git stash pop` | Lấy lại |
+| `git stash list` | Danh sách |
 | `git stash drop` | Xóa stash |
 
 ## Rebase
-| Command | Action |
-|---------|--------|
-| `git rebase <branch>` | Rebase lên branch |
-| `git rebase --continue` | Tiếp tục sau fix conflict |
-| `git rebase --abort` | Hủy rebase |
+| Lệnh | Action |
+|------|--------|
+| `git rebase <branch>` | Rebase |
+| `git rebase --continue` | Tiếp tục |
+| `git rebase --abort` | Hủy |
 
 ## Remote
-| Command | Action |
-|---------|--------|
+| Lệnh | Action |
+|------|--------|
 | `git remote -v` | Xem remotes |
-| `git push -u origin <branch>` | Push branch mới lên remote |
-| `git push origin --delete <branch>` | Xóa branch remote |
+| `git push -u origin <br>` | Push branch mới |
+| `git push origin --delete <br>` | Xóa remote branch |
 
-## GitHub CLI (gh)
-| Command | Action |
-|---------|--------|
-| `gh repo create <name>` | Tạo repo |
-| `gh pr create` | Tạo pull request |
+## GitHub CLI
+| Lệnh | Action |
+|------|--------|
+| `gh repo create` | Tạo repo |
+| `gh pr create` | Tạo PR |
 | `gh pr list` | Xem PRs |
-| `gh pr checkout <number>` | Checkout PR |
+| `gh pr checkout <N>` | Checkout PR |
 | `gh issue list` | Xem issues |
-| `gh repo clone <owner/repo>` | Clone repo |
 
 ## Tips
-- `git add -p` — stage từng phần (interactive)
-- `git log --all --graph --oneline` — xem toàn bộ history dạng cây
-- `git cherry-pick <commit>` — copy 1 commit sang branch hiện tại
-- `git reflog` — xem mọi thao tác đã làm (cứu khi lỡ tay)
+- `git add -p` — stage từng phần
+- `git cherry-pick <commit>` — copy commit
+- `git reflog` — cứu khi lỡ tay

@@ -1,101 +1,101 @@
 # Neovim Cheatsheet
 
 ## Modes
-| Key     | Mode     |
-|---------|----------|
-| `Esc`   | Normal   |
-| `i`     | Insert (trước cursor) |
-| `a`     | Insert (sau cursor)   |
-| `v`     | Visual   |
-| `V`     | Visual Line |
-| `:`     | Command  |
+| Key | Mode |
+|-----|------|
+| `Esc` | Normal |
+| `i` | Insert (trước cursor) |
+| `a` | Insert (sau cursor) |
+| `v` | Visual |
+| `V` | Visual Line |
+| `:` | Command |
 
-## Di chuyển (Normal mode)
-| Key        | Action              |
-|------------|---------------------|
-| `h j k l`  | Trái/Xuống/Lên/Phải |
-| `w` / `b`  | Từ tiếp / từ trước  |
-| `0` / `$`  | Đầu dòng / cuối dòng |
-| `gg` / `G` | Đầu file / cuối file |
-| `Ctrl+d/u` | Cuộn nửa trang xuống/lên |
-| `{` / `}`  | Paragraph trước/sau |
-| `%`        | Nhảy tới dấu ngoặc đối diện |
+## Di chuyển
+| Key | Action |
+|-----|--------|
+| `h j k l` | Trái/Xuống/Lên/Phải |
+| `w` / `b` | Từ tiếp / trước |
+| `0` / `$` | Đầu / cuối dòng |
+| `gg` / `G` | Đầu / cuối file |
+| `Ctrl+d/u` | Nửa trang xuống/lên |
+| `{` / `}` | Paragraph trước/sau |
+| `%` | Dấu ngoặc đối diện |
 
 ## Chỉnh sửa
-| Key    | Action            |
-|--------|-------------------|
-| `i/a`  | Insert trước/sau cursor |
-| `o/O`  | Dòng mới dưới/trên |
-| `x`    | Xóa 1 ký tự       |
-| `dd`   | Xóa dòng          |
-| `yy`   | Copy dòng          |
-| `p/P`  | Paste dưới/trên    |
-| `u`    | Undo               |
-| `Ctrl+r` | Redo            |
-| `ciw`  | Đổi từ (change inner word) |
-| `di"`  | Xóa trong dấu "   |
-| `5dd`  | Xóa 5 dòng        |
+| Key | Action |
+|-----|--------|
+| `i` / `a` | Insert trước/sau |
+| `o` / `O` | Dòng mới dưới/trên |
+| `x` | Xóa 1 ký tự |
+| `dd` | Xóa dòng |
+| `yy` | Copy dòng |
+| `p` / `P` | Paste dưới/trên |
+| `u` | Undo |
+| `Ctrl+r` | Redo |
+| `ciw` | Đổi từ |
+| `di"` | Xóa trong "" |
+| `5dd` | Xóa 5 dòng |
 
 ## Lưu & Thoát
-| Key         | Action       |
-|-------------|--------------|
-| `:w`        | Save         |
-| `:q`        | Quit         |
-| `:wq`       | Save & quit  |
-| `:q!`       | Quit ko save |
-| `Space+w`   | Save (shortcut) |
-| `Space+q`   | Quit (shortcut) |
+| Key | Action |
+|-----|--------|
+| `:w` | Save |
+| `:q` | Quit |
+| `:wq` | Save & quit |
+| `:q!` | Quit ko save |
+| `SPC w` | Save |
+| `SPC q` | Quit |
 
 ## Tìm kiếm
-| Key         | Action              |
-|-------------|---------------------|
-| `Space+ff`  | Tìm file            |
-| `Space+fg`  | Tìm text (grep)     |
-| `Space+fb`  | Chuyển buffer       |
-| `Space+fr`  | File gần đây        |
-| `Space+/`   | Tìm trong file hiện tại |
-| `/text`     | Tìm trong file      |
-| `n` / `N`   | Kết quả tiếp / trước |
+| Key | Action |
+|-----|--------|
+| `SPC ff` | Tìm file |
+| `SPC fg` | Grep text |
+| `SPC fb` | Buffers |
+| `SPC fr` | File gần đây |
+| `SPC /` | Tìm trong file |
+| `/text` | Tìm trong file |
+| `n` / `N` | Tiếp / trước |
 
-## LSP (Code Intelligence)
-| Key         | Action              |
-|-------------|---------------------|
-| `gd`        | Go to definition    |
-| `gr`        | References          |
-| `gi`        | Implementation      |
-| `K`         | Hover docs          |
-| `Space+ca`  | Code action         |
-| `Space+rn`  | Rename              |
-| `Space+D`   | Type definition     |
-| `Space+d`   | Line diagnostics    |
-| `[d` / `]d` | Diagnostic trước/sau |
-| `Space+cf`  | Format code         |
+## LSP
+| Key | Action |
+|-----|--------|
+| `gd` | Definition |
+| `gr` | References |
+| `gi` | Implementation |
+| `K` | Hover docs |
+| `SPC ca` | Code action |
+| `SPC rn` | Rename |
+| `SPC D` | Type definition |
+| `SPC d` | Diagnostics |
+| `[d` / `]d` | Diag trước/sau |
+| `SPC cf` | Format |
 
 ## File & Window
-| Key         | Action              |
-|-------------|---------------------|
-| `Space+e`   | File explorer       |
-| `Shift+H/L` | Buffer trước/sau   |
-| `Space+bd`  | Đóng buffer         |
-| `:vsplit`   | Split dọc           |
-| `:split`    | Split ngang         |
-| `Ctrl+h/j/k/l` | Chuyển pane      |
+| Key | Action |
+|-----|--------|
+| `SPC e` | File explorer |
+| `S-H` / `S-L` | Buffer trước/sau |
+| `SPC bd` | Đóng buffer |
+| `:vsplit` | Split dọc |
+| `:split` | Split ngang |
+| `C-h/j/k/l` | Chuyển pane |
 
 ## Tiện ích
-| Key         | Action              |
-|-------------|---------------------|
-| `gcc`       | Comment/uncomment dòng |
-| `gc`        | Comment selection (visual) |
-| `Ctrl+\`    | Terminal float      |
-| `Space+th`  | Terminal ngang      |
-| `Ctrl+a`    | Select all          |
-| `Space`     | Which-key (chờ xem phím tắt) |
+| Key | Action |
+|-----|--------|
+| `gcc` | Comment dòng |
+| `gc` | Comment chọn |
+| `C-\` | Terminal float |
+| `SPC th` | Terminal ngang |
+| `C-a` | Select all |
+| `SPC` | Which-key |
 
-## Autocomplete (Insert mode)
-| Key         | Action              |
-|-------------|---------------------|
-| `Tab`       | Chọn gợi ý tiếp    |
-| `Shift+Tab` | Gợi ý trước        |
-| `Enter`     | Confirm             |
-| `Ctrl+Space`| Mở autocomplete     |
-| `Ctrl+e`    | Đóng autocomplete   |
+## Autocomplete
+| Key | Action |
+|-----|--------|
+| `Tab` | Gợi ý tiếp |
+| `S-Tab` | Gợi ý trước |
+| `Enter` | Confirm |
+| `C-Space` | Mở menu |
+| `C-e` | Đóng menu |

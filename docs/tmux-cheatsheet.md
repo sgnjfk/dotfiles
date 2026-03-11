@@ -1,69 +1,68 @@
 # Tmux Cheatsheet
 
-> Prefix hiện tại: `Ctrl+a` (đã đổi từ Ctrl+b)
+> Prefix: `C-a`
 
 ## Session
-| Key / Command          | Action              |
-|------------------------|---------------------|
-| `tmux new -s name`     | Tạo session mới     |
-| `tmux ls`              | Liệt kê sessions    |
-| `tmux attach -t name`  | Attach vào session   |
-| `tmux kill-session -t name` | Xóa session    |
-| `Ctrl+a $`             | Rename session       |
-| `Ctrl+a d`             | Detach (thoát giữ session) |
-| `Ctrl+a s`             | Chọn session         |
+| Lệnh | Action |
+|------|--------|
+| `tmux new -s name` | Tạo session |
+| `tmux ls` | List sessions |
+| `tmux attach -t name` | Attach |
+| `tmux kill-session -t name` | Xóa |
+| `C-a $` | Rename session |
+| `C-a d` | Detach |
+| `C-a s` | Chọn session |
 
 ## Pane
-| Key                    | Action              |
-|------------------------|---------------------|
-| `Ctrl+a |`             | Split dọc           |
-| `Ctrl+a -`             | Split ngang         |
-| `Ctrl+a x`             | Đóng pane (confirm) |
-| `Alt+h/j/k/l`          | Chuyển pane (ko cần prefix) |
-| `Ctrl+a z`             | Zoom pane (full screen toggle) |
-| `Ctrl+a Space`         | Đổi layout          |
-| `Ctrl+a : resize-pane -D/U/L/R N` | Resize N cells |
-| `Ctrl+a : split-window -v -f` | Pane ngang full width |
+| Key | Action |
+|-----|--------|
+| `C-a \|` | Split dọc |
+| `C-a -` | Split ngang |
+| `C-a x` | Đóng pane |
+| `Alt+h/j/k/l` | Chuyển pane |
+| `C-a z` | Zoom toggle |
+| `C-a Space` | Đổi layout |
+| `C-a : resize-pane -D/U/L/R N` | Resize |
+| `C-a : split-window -v -f` | Full-width split |
 
-> Pane active sáng bình thường, pane inactive tối hơn.
+> Active pane sáng, inactive tối.
 
-## Window (Tab)
-| Key                    | Action              |
-|------------------------|---------------------|
-| `Ctrl+a c`             | Tạo window mới      |
-| `Ctrl+a ,`             | Rename window        |
-| `Ctrl+a n` / `Ctrl+a p` | Window tiếp/trước  |
-| `Ctrl+a 1-9`           | Nhảy tới window N   |
-| `Ctrl+a &`             | Đóng window          |
-| `Ctrl+a w`             | Chọn window (list)   |
+## Window
+| Key | Action |
+|-----|--------|
+| `C-a c` | Tạo window |
+| `C-a ,` | Rename |
+| `C-a n` / `C-a p` | Tiếp / trước |
+| `C-a 1-9` | Nhảy tới N |
+| `C-a &` | Đóng window |
+| `C-a w` | List windows |
 
-## Copy mode (vi-style)
-| Key                    | Action              |
-|------------------------|---------------------|
-| `Ctrl+a [`             | Vào copy mode       |
-| `h j k l`              | Di chuyển           |
-| `/`                    | Tìm text            |
-| `v`                    | Bắt đầu select     |
-| `y`                    | Copy (vào clipboard Windows) |
-| `Ctrl+a ]`             | Paste               |
-| `q` / `Esc`            | Thoát copy mode     |
+## Copy mode (vi)
+| Key | Action |
+|-----|--------|
+| `C-a [` | Vào copy mode |
+| `h j k l` | Di chuyển |
+| `/` | Tìm text |
+| `v` | Bắt đầu chọn |
+| `y` | Copy → clipboard |
+| `C-a ]` | Paste |
+| `q` / `Esc` | Thoát |
 
-> Hoặc dùng chuột: bôi đen + `Ctrl+C` để copy.
+> Hoặc: bôi chuột + `Ctrl+C`.
 
-## Session Save/Restore
-| Key / Setting          | Action              |
-|------------------------|---------------------|
-| `Ctrl+a Ctrl+s`        | Save session (thủ công) |
-| `Ctrl+a Ctrl+r`        | Restore session     |
-| Auto save              | Mỗi 5 phút (continuum) |
-| Auto restore           | Tự khôi phục khi mở tmux |
-
-> Không cần nhớ save — tự động. Restart WSL xong mở `tmux` là session tự quay lại.
+## Save/Restore
+| Key | Action |
+|-----|--------|
+| `C-a C-s` | Save thủ công |
+| `C-a C-r` | Restore |
+| Auto save | Mỗi 5 phút |
+| Auto restore | Khi mở tmux |
+| `tsave` | Xem lần save cuối |
+| `tss` | Save ngay |
 
 ## Khác
-| Key / Command          | Action              |
-|------------------------|---------------------|
-| `Ctrl+a r`             | Reload config       |
-| `Ctrl+a ?`             | Xem tất cả keybindings |
-| `Ctrl+a t`             | Hiện đồng hồ       |
-| Mouse                  | Đã bật (click, drag, scroll) |
+| Key | Action |
+|-----|--------|
+| `C-a r` | Reload config |
+| `C-a ?` | Tất cả keybindings |
+| `C-a t` | Đồng hồ |
