@@ -19,6 +19,8 @@ Prefix: `C-b`
 `Alt+hjkl` Chuyển pane
 `C-b z` Zoom/unzoom pane
 `C-b Space` Đổi layout pane
+`C-b :join-pane -t <session>:<window>` Move pane sang window/session khác
+`C-b :move-window -t <session>:` Move window sang session khác
 
 Active pane sáng, inactive tối.
 

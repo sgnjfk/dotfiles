@@ -66,6 +66,6 @@ alias tsave="ls -la ~/.local/share/tmux/resurrect/last"
 alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh && echo 'Session saved!' && tsave"
 
 # AI quick query (non-interactive)
-ask() { claude -p "$*"; }
-askg() { gemini -p "$*"; }
-askx() { codex exec --skip-git-repo-check "$*"; }
+ask() { claude -p "$*" --allowedTools "WebSearch,WebFetch" | glow -; }
+askg() { gemini -p "$*" -o text --yolo 2>/dev/null | glow -; }
+askx() { codex exec --skip-git-repo-check "$*" 2>&1 | grep -v "^OpenAI\|^---\|^workdir\|^model\|^provider\|^approval\|^sandbox\|^reasoning\|^session\|^user\|^mcp\|^tokens" | glow -; }
