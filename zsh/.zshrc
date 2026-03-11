@@ -52,6 +52,7 @@ fuck() {
 
 # ===== Aliases =====
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
+alias ss="$HOME/dotfiles/scripts/sessionizer.sh"
 csf() { grep -H '.' ~/dotfiles/docs/*-cheatsheet.md | sed 's|.*/\(.*\)-cheatsheet.md:|\1: |' | fzf --query="$*"; }
 alias open="wslview"
 alias cl="clear"

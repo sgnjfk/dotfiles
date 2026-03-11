@@ -10,6 +10,8 @@ Prefix: `C-b`
 `C-b $` Rename session
 `C-b d` Detach session
 `C-b s` Chọn session (có preview, gõ / để filter)
+`C-f` Sessionizer — tìm folder, tạo/switch session (fzf)
+`ss` Sessionizer từ terminal
 
 ## Pane
 `C-b |` Split pane dọc
