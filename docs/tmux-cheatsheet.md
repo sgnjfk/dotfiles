@@ -55,7 +55,7 @@
 |------------------------|---------------------|
 | `Ctrl+a Ctrl+s`        | Save session (thủ công) |
 | `Ctrl+a Ctrl+r`        | Restore session     |
-| Auto save              | Mỗi 15 phút (continuum) |
+| Auto save              | Mỗi 5 phút (continuum) |
 | Auto restore           | Tự khôi phục khi mở tmux |
 
 > Không cần nhớ save — tự động. Restart WSL xong mở `tmux` là session tự quay lại.

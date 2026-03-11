@@ -76,6 +76,8 @@ cs         # menu chọn
 | `duf` | Dung lượng ổ đĩa |
 | `tldr cmd` | Man page ngắn gọn |
 | `nview` | Nvim read-only mode |
+| `tsave` | Xem lần save tmux cuối |
+| `tss` | Save tmux session ngay |
 
 ## Git Aliases
 
@@ -131,7 +133,7 @@ cs         # menu chọn
 | `Ctrl+a Ctrl+r` | Restore session |
 | `Ctrl+a r` | Reload config |
 
-> Session tự save mỗi 15 phút và tự restore khi mở tmux.
+> Session tự save mỗi 5 phút và tự restore khi mở tmux.
 
 ## SSH
 
