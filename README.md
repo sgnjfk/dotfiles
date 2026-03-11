@@ -52,6 +52,7 @@ cs git     # xem git cheatsheet
 cs ssh     # xem ssh cheatsheet
 cs tools   # xem tools cheatsheet (lazygit, fzf, zoxide, bat, eza...)
 cs         # menu chọn
+csf rename session  # fuzzy search cheatsheet
 ```
 
 ## Aliases
@@ -78,6 +79,10 @@ cs         # menu chọn
 | `nview` | Nvim read-only mode |
 | `tsave` | Xem lần save tmux cuối |
 | `tss` | Save tmux session ngay |
+| `csf` | Fuzzy search cheatsheet |
+| `ask "..."` | Hỏi Claude (non-interactive) |
+| `askg "..."` | Hỏi Gemini (non-interactive) |
+| `askx "..."` | Hỏi Codex (non-interactive) |
 
 ## Git Aliases
 
@@ -118,20 +123,22 @@ cs         # menu chọn
 
 ## Tmux
 
-**Prefix:** `Ctrl+a` | **Theme:** Catppuccin Mocha
+**Prefix:** `Ctrl+b` | **Theme:** Catppuccin Mocha
 
 | Key | Action |
 |-----|--------|
-| `Ctrl+a \|` | Split dọc |
-| `Ctrl+a -` | Split ngang |
+| `Ctrl+b \|` | Split dọc |
+| `Ctrl+b -` | Split ngang |
+| `Ctrl+b _` | Split ngang full width |
 | `Alt+h/j/k/l` | Chuyển pane |
-| `Ctrl+a z` | Zoom pane |
-| `Ctrl+a [` | Copy mode (vi-style) |
+| `Ctrl+b z` | Zoom pane |
+| `Ctrl+b [` | Copy mode (vi-style) |
 | `v` → `y` | Select → copy (clipboard Windows) |
-| `Ctrl+a s` | Chọn session |
-| `Ctrl+a Ctrl+s` | Save session |
-| `Ctrl+a Ctrl+r` | Restore session |
-| `Ctrl+a r` | Reload config |
+| `Ctrl+b s` | Chọn session |
+| `Ctrl+b w` | Chọn window (tất cả sessions) |
+| `Ctrl+b Ctrl+s` | Save session |
+| `Ctrl+b Ctrl+r` | Restore session |
+| `Ctrl+b r` | Reload config |
 
 > Session tự save mỗi 5 phút và tự restore khi mở tmux.
 
