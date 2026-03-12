@@ -35,11 +35,11 @@ npx() { lazy_load_nvm; npx "$@"; }
 [[ -f "/home/vp/.openclaw/completions/openclaw.zsh" ]] && source "/home/vp/.openclaw/completions/openclaw.zsh"
 
 # fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 
 # zoxide
-eval "$(zoxide init zsh)"
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 # Autosuggestion accept
 bindkey '^ ' autosuggest-accept
@@ -77,8 +77,8 @@ elif command -v xdg-open &>/dev/null; then
 fi
 alias cl="clear"
 alias lg="lazygit"
-alias cat="batcat --style=plain"
-alias catn="batcat"
+alias cat="bat --style=plain"
+alias catn="bat"
 alias ls="eza --icons"
 alias ll="eza --icons -la"
 alias tree="eza --icons --tree"

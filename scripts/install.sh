@@ -21,13 +21,51 @@ echo "[backup] Saved to $BACKUP_DIR"
 # Dependencies
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y -qq tmux git curl unzip ripgrep fd-find mosh fzf zoxide bat eza tldr duf btop neofetch thefuck jq ncdu
+sudo apt-get install -y -qq \
+  tmux git curl unzip wget python3-pip \
+  ripgrep fd-find fzf zoxide \
+  bat mosh jq ncdu btop neofetch \
+  build-essential
 
-# WSL-only packages
+# WSL vs native Linux packages
 if [ "$IS_WSL" = true ]; then
   sudo apt-get install -y -qq wslu
 else
   sudo apt-get install -y -qq xclip
+fi
+
+# Symlinks for Ubuntu-specific binary names
+[ ! -f ~/.local/bin/bat ] && mkdir -p ~/.local/bin && ln -sf /usr/bin/batcat ~/.local/bin/bat
+[ ! -f ~/.local/bin/fd ] && mkdir -p ~/.local/bin && ln -sf /usr/bin/fdfind ~/.local/bin/fd
+
+# eza (not in apt on all Ubuntu versions)
+if ! command -v eza &>/dev/null; then
+  echo "[deps] Installing eza..."
+  sudo mkdir -p /etc/apt/keyrings
+  wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list > /dev/null
+  sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+  sudo apt-get update -qq && sudo apt-get install -y -qq eza
+fi
+
+# duf
+if ! command -v duf &>/dev/null; then
+  echo "[deps] Installing duf..."
+  DUF_VERSION=$(curl -s https://api.github.com/repos/muesli/duf/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo /tmp/duf.deb "https://github.com/muesli/duf/releases/latest/download/duf_${DUF_VERSION}_linux_amd64.deb"
+  sudo dpkg -i /tmp/duf.deb && rm /tmp/duf.deb
+fi
+
+# tldr
+if ! command -v tldr &>/dev/null; then
+  echo "[deps] Installing tldr..."
+  sudo apt-get install -y -qq tldr 2>/dev/null || pip3 install tldr --quiet
+fi
+
+# thefuck
+if ! command -v thefuck &>/dev/null; then
+  echo "[deps] Installing thefuck..."
+  pip3 install thefuck --quiet
 fi
 
 # Lazygit
@@ -53,8 +91,7 @@ if ! command -v glow &>/dev/null; then
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
   echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list > /dev/null
-  sudo apt-get update -qq
-  sudo apt-get install -y -qq glow
+  sudo apt-get update -qq && sudo apt-get install -y -qq glow
 fi
 
 # Neovim (latest)
@@ -114,17 +151,26 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
 
-# NVM
+# NVM + Node LTS
 if [ ! -d "$HOME/.nvm" ]; then
   echo "[nvm] Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if ! command -v node &>/dev/null; then
+  echo "[nvm] Installing Node LTS..."
+  nvm install --lts
 fi
 
 # Set zsh as default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "[zsh] Setting zsh as default shell..."
-  chsh -s "$(which zsh)"
+  sudo chsh -s "$(which zsh)" "$USER"
 fi
+
+# Project directories
+mkdir -p ~/projects ~/work
 
 echo ""
 echo "=== Linking configs ==="
@@ -164,12 +210,10 @@ ln -sf "$DOTFILES/tmux/tmux.conf" ~/.tmux.conf
 echo "[tmux] Done"
 
 # Zsh
-if [ -f "$DOTFILES/zsh/.zshrc" ]; then
-  echo "[zsh] Linking config..."
-  ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
-  ln -sf "$DOTFILES/zsh/.p10k.zsh" ~/.p10k.zsh
-  echo "[zsh] Done"
-fi
+echo "[zsh] Linking config..."
+ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
+ln -sf "$DOTFILES/zsh/.p10k.zsh" ~/.p10k.zsh
+echo "[zsh] Done"
 
 # Scripts
 echo "[scripts] Linking scripts..."
@@ -182,6 +226,6 @@ echo "[scripts] Done"
 echo ""
 echo "=== All done! ==="
 echo "[info] Backup saved at: $BACKUP_DIR"
-echo "Restart tmux: tmux source ~/.tmux.conf"
-echo "Restart nvim: just open nvim"
-echo "Reload zsh: source ~/.zshrc"
+echo "Restart shell: exec zsh"
+echo "Start tmux: tmux"
+echo "Open nvim: nvim (wait ~2min for plugins to install)"
