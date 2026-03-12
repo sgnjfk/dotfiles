@@ -163,6 +163,12 @@ if ! command -v node &>/dev/null; then
   nvm install --lts
 fi
 
+# AI CLI tools (requires node)
+echo "[ai] Installing AI CLI tools..."
+command -v claude &>/dev/null || npm install -g @anthropic-ai/claude-code --quiet
+command -v codex &>/dev/null || npm install -g @openai/codex --quiet
+command -v gemini &>/dev/null || npm install -g @google/gemini-cli --quiet
+
 # Set zsh as default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "[zsh] Setting zsh as default shell..."
