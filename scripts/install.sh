@@ -26,6 +26,8 @@ sudo apt-get install -y -qq tmux git curl unzip ripgrep fd-find mosh fzf zoxide 
 # WSL-only packages
 if [ "$IS_WSL" = true ]; then
   sudo apt-get install -y -qq wslu
+else
+  sudo apt-get install -y -qq xclip
 fi
 
 # Lazygit
@@ -86,6 +88,42 @@ fi
 if [ ! -d "$HOME/.config/tmux/plugins/tmux-continuum" ]; then
   echo "[tmux] Installing tmux-continuum..."
   git clone https://github.com/tmux-plugins/tmux-continuum ~/.config/tmux/plugins/tmux-continuum
+fi
+
+# Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "[zsh] Installing oh-my-zsh..."
+  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Zsh plugins
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-completions" ]; then
+  git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions"
+fi
+
+# Powerlevel10k
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+  echo "[zsh] Installing powerlevel10k..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k "$ZSH_CUSTOM/themes/powerlevel10k"
+fi
+
+# NVM
+if [ ! -d "$HOME/.nvm" ]; then
+  echo "[nvm] Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+
+# Set zsh as default shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+  echo "[zsh] Setting zsh as default shell..."
+  chsh -s "$(which zsh)"
 fi
 
 echo ""
