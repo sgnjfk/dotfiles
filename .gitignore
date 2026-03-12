@@ -8,3 +8,4 @@ ssh/known_hosts*
 *.key
 *.pem
 sync-credentials.sh
+sync-projects.sh
