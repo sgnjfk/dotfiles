@@ -167,6 +167,7 @@ echo "[tmux] Done"
 if [ -f "$DOTFILES/zsh/.zshrc" ]; then
   echo "[zsh] Linking config..."
   ln -sf "$DOTFILES/zsh/.zshrc" ~/.zshrc
+  ln -sf "$DOTFILES/zsh/.p10k.zsh" ~/.p10k.zsh
   echo "[zsh] Done"
 fi
 
