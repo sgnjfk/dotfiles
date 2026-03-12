@@ -55,6 +55,23 @@ alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
 alias ss="$HOME/dotfiles/scripts/sessionizer.sh"
 csf() { grep -H '.' ~/dotfiles/docs/*-cheatsheet.md | sed 's|.*/\(.*\)-cheatsheet.md:|\1: |' | fzf --query="$*"; }
 alias open="wslview"
+ob() {
+  local abspath=$(realpath "$1")
+  local winpath=$(wslpath -w "$abspath")
+  # File trong vault (D:\OneDrive)
+  if [[ "$winpath" == D:\\OneDrive\\* ]]; then
+    local relpath="${winpath#D:\\OneDrive\\}"
+    relpath="${relpath//\\//}"
+    local encoded=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1], safe='/'))" "$relpath")
+    wslview "obsidian://open?vault=vpsg&file=$encoded"
+  else
+    # File trong WSL — dùng UNC path
+    local distro=$(wslpath -w / | grep -oP '(?<=wsl.localhost\\)[^\\]+')
+    local uncpath="\\\\wsl.localhost\\${distro}${abspath//\//\\}"
+    local encoded=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$uncpath")
+    wslview "obsidian://open?path=$encoded"
+  fi
+}
 alias cl="clear"
 alias lg="lazygit"
 alias cat="batcat --style=plain"
