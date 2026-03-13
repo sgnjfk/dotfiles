@@ -76,8 +76,6 @@ elif command -v xdg-open &>/dev/null; then
   alias open="xdg-open"
 fi
 opw() { python3 ~/dotfiles/scripts/opw.py "$@"; }
-export PATH="$HOME/.cargo/bin:$PATH"
-claude() { claude-chill -- ~/.nvm/versions/node/v24.14.0/bin/claude "$@"; }
 clip() {
   local data=$(cat)
   local seq=$(printf '\033]52;c;%s\a' "$(echo -n "$data" | base64)")
