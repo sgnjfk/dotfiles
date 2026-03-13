@@ -1,15 +1,6 @@
 [user]
 	name = sgnjfk
 	email = sgnjfk@gmail.com
-
-[credential "https://github.com"]
-	helper =
-	helper = !/home/vp/.local/bin/gh auth git-credential
-
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/home/vp/.local/bin/gh auth git-credential
-
 [init]
 	defaultBranch = main
 
@@ -37,3 +28,9 @@
 	lg = log --oneline --graph --all
 	last = log -1 HEAD
 	undo = reset HEAD~1 --mixed
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/local/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/local/bin/gh auth git-credential
