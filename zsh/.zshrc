@@ -76,6 +76,7 @@ elif command -v xdg-open &>/dev/null; then
   alias open="xdg-open"
 fi
 opw() { python3 ~/dotfiles/scripts/opw.py "$@"; }
+claude() { TERM=xterm-256color command claude "$@"; }
 clip() {
   local data=$(cat)
   local seq=$(printf '\033]52;c;%s\a' "$(echo -n "$data" | base64)")
