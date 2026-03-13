@@ -73,6 +73,17 @@ Gõ sai lệnh → `fuck` → tự sửa lệnh
 `askg "câu hỏi"` Hỏi Gemini (non-interactive)
 `askx "câu hỏi"` Hỏi Codex (non-interactive)
 
+## opw (mở file trên Windows từ Linux)
+`opw file.pdf` Mở PDF trên Windows
+`opw file.md` Render markdown đẹp trên browser (GitHub dark theme)
+`opw a.xlsx b.docx` Mở nhiều file cùng lúc
+Server tự tắt sau download. File .md thì Ctrl+C để tắt.
+
+## clip (copy vào clipboard Windows)
+`echo "text" | clip` Copy text vào clipboard Windows
+`cat file.txt | clip` Copy nội dung file vào clipboard
+Hoạt động trong tmux (bypass qua SSH TTY gốc).
+
 ## Cheatsheet
 `cs tmux` Xem cheatsheet (glow)
 `csf rename session` Tìm nhanh trong cheatsheet (fzf)

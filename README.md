@@ -1,6 +1,6 @@
 # Dotfiles
 
-Dev environment setup: Neovim + Tmux + Zsh + Git + SSH + Claude Code trên WSL.
+Dev environment setup: Neovim + Tmux + Zsh + Git + SSH + Claude Code trên Linux VM (Windows host).
 
 ## Cài đặt
 
@@ -36,7 +36,8 @@ Lần đầu mở `nvim`, chờ ~1-2 phút để lazy.nvim cài plugins và Maso
 │   └── CLAUDE.md      → ~/.claude/CLAUDE.md
 ├── scripts/
 │   ├── install.sh     (cài đặt + link config)
-│   └── cheatsheet.sh  (xem cheatsheet)
+│   ├── cheatsheet.sh  (xem cheatsheet)
+│   └── opw.py         (mở file trên Windows từ Linux)
 └── docs/
     ├── nvim-cheatsheet.md
     ├── tmux-cheatsheet.md
@@ -83,6 +84,8 @@ csf rename session  # fuzzy search cheatsheet
 | `ask "..."` | Hỏi Claude (non-interactive) |
 | `askg "..."` | Hỏi Gemini (non-interactive) |
 | `askx "..."` | Hỏi Codex (non-interactive) |
+| `opw file` | Mở file trên Windows (PDF, Excel, Word, MD...) |
+| `clip` | Copy text vào clipboard Windows (`echo "abc" \| clip`) |
 
 ## Git Aliases
 

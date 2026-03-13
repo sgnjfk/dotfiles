@@ -75,6 +75,18 @@ if grep -qi microsoft /proc/version 2>/dev/null; then
 elif command -v xdg-open &>/dev/null; then
   alias open="xdg-open"
 fi
+opw() { python3 ~/dotfiles/scripts/opw.py "$@"; }
+clip() {
+  local data=$(cat)
+  local seq=$(printf '\033]52;c;%s\a' "$(echo -n "$data" | base64)")
+  if [[ -n "$TMUX" ]]; then
+    local tty=$(tmux display-message -p '#{client_pid}' | xargs -I{} ls -la /proc/{}/fd/0 | awk '{print $NF}')
+    printf '%s' "$seq" > "$tty"
+  else
+    printf '%s' "$seq"
+  fi
+  echo "Copied to clipboard."
+}
 alias cl="clear"
 alias lg="lazygit"
 alias cat="bat --style=plain"
