@@ -85,6 +85,7 @@ csf rename session  # fuzzy search cheatsheet
 | `askg "..."` | Hỏi Gemini (non-interactive) |
 | `askx "..."` | Hỏi Codex (non-interactive) |
 | `opw file` | Mở file trên Windows (PDF, Excel, Word, MD...) |
+| `opw folder/` | Serve folder — browse, View/Download từng file |
 | `clip` | Copy text vào clipboard Windows (`echo "abc" \| clip`) |
 
 ## Git Aliases

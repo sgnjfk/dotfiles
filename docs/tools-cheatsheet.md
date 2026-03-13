@@ -73,11 +73,16 @@ Gõ sai lệnh → `fuck` → tự sửa lệnh
 `askg "câu hỏi"` Hỏi Gemini (non-interactive)
 `askx "câu hỏi"` Hỏi Codex (non-interactive)
 
-## opw (mở file trên Windows từ Linux)
-`opw file.pdf` Mở PDF trên Windows
-`opw file.md` Render markdown đẹp trên browser (GitHub dark theme)
+## opw (mở file/folder trên Windows từ Linux)
+`opw file.pdf` Mở file trên Windows
+`opw file.md` Render markdown trên browser (có chọn theme)
+`opw folder/` Serve folder — danh sách file với View / Download
 `opw a.xlsx b.docx` Mở nhiều file cùng lúc
-Server tự tắt sau download. File .md thì Ctrl+C để tắt.
+View: .md .html .pdf .txt ảnh — mở inline trên browser
+Download: tất cả file, kể cả viewable
+MD themes: GitHub Dark, GitHub Light, Catppuccin, Dracula, Solarized Dark
+Theme lưu vào localStorage — tự nhớ lần sau
+Ctrl+C để tắt server
 
 ## clip (copy vào clipboard Windows)
 `echo "text" | clip` Copy text vào clipboard Windows
