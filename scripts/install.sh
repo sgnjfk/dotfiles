@@ -3,9 +3,11 @@ set -e
 
 DOTFILES="$HOME/dotfiles"
 IS_WSL=$(grep -qi microsoft /proc/version 2>/dev/null && echo true || echo false)
+ARCH=$(uname -m)
 
 echo "=== Dotfiles Install ==="
 echo "[info] WSL detected: $IS_WSL"
+echo "[info] Architecture: $ARCH"
 
 # Backup existing configs
 echo "[backup] Backing up existing configs..."
@@ -52,7 +54,12 @@ fi
 if ! command -v duf &>/dev/null; then
   echo "[deps] Installing duf..."
   DUF_VERSION=$(curl -s https://api.github.com/repos/muesli/duf/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
-  curl -Lo /tmp/duf.deb "https://github.com/muesli/duf/releases/latest/download/duf_${DUF_VERSION}_linux_amd64.deb"
+  if [ "$ARCH" = "aarch64" ]; then
+    DUF_ARCH="arm64"
+  else
+    DUF_ARCH="amd64"
+  fi
+  curl -Lo /tmp/duf.deb "https://github.com/muesli/duf/releases/latest/download/duf_${DUF_VERSION}_linux_${DUF_ARCH}.deb"
   sudo dpkg -i /tmp/duf.deb && rm /tmp/duf.deb
 fi
 
@@ -72,7 +79,12 @@ fi
 if ! command -v lazygit &>/dev/null; then
   echo "[deps] Installing lazygit..."
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  if [ "$ARCH" = "aarch64" ]; then
+    LAZYGIT_ARCH="arm64"
+  else
+    LAZYGIT_ARCH="x86_64"
+  fi
+  curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${LAZYGIT_ARCH}.tar.gz"
   cd /tmp && tar xzf lazygit.tar.gz lazygit && sudo install lazygit /usr/local/bin/ && rm lazygit lazygit.tar.gz
   cd -
 fi
@@ -81,7 +93,12 @@ fi
 if ! command -v dust &>/dev/null; then
   echo "[deps] Installing dust..."
   DUST_VERSION=$(curl -s https://api.github.com/repos/bootandy/dust/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
-  curl -Lo /tmp/dust.deb "https://github.com/bootandy/dust/releases/latest/download/du-dust_${DUST_VERSION}-1_amd64.deb"
+  if [ "$ARCH" = "aarch64" ]; then
+    DUST_ARCH="arm64"
+  else
+    DUST_ARCH="amd64"
+  fi
+  curl -Lo /tmp/dust.deb "https://github.com/bootandy/dust/releases/latest/download/du-dust_${DUST_VERSION}-1_${DUST_ARCH}.deb"
   sudo dpkg -i /tmp/dust.deb && rm /tmp/dust.deb
 fi
 
@@ -96,10 +113,15 @@ fi
 
 # Neovim (latest)
 echo "[nvim] Installing latest neovim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-tar xzf nvim-linux-x86_64.tar.gz
-sudo cp -rf nvim-linux-x86_64/* /usr/local/
-rm -rf nvim-linux-x86_64 nvim-linux-x86_64.tar.gz
+if [ "$ARCH" = "aarch64" ]; then
+  NVIM_ARCH="arm64"
+else
+  NVIM_ARCH="x86_64"
+fi
+curl -LO "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-${NVIM_ARCH}.tar.gz"
+tar xzf "nvim-linux-${NVIM_ARCH}.tar.gz"
+sudo cp -rf "nvim-linux-${NVIM_ARCH}"/* /usr/local/
+rm -rf "nvim-linux-${NVIM_ARCH}" "nvim-linux-${NVIM_ARCH}.tar.gz"
 echo "[nvim] $(nvim --version | head -1)"
 
 # win32yank (WSL clipboard only)
@@ -163,11 +185,15 @@ if ! command -v node &>/dev/null; then
   nvm install --lts
 fi
 
-# AI CLI tools (requires node)
-echo "[ai] Installing AI CLI tools..."
-command -v claude &>/dev/null || npm install -g @anthropic-ai/claude-code --quiet
-command -v codex &>/dev/null || npm install -g @openai/codex --quiet
-command -v gemini &>/dev/null || npm install -g @google/gemini-cli --quiet
+# AI CLI tools (requires node, skip on ARM — heavy and rarely used on Pi)
+if [ "$ARCH" != "aarch64" ]; then
+  echo "[ai] Installing AI CLI tools..."
+  command -v claude &>/dev/null || npm install -g @anthropic-ai/claude-code --quiet
+  command -v codex &>/dev/null || npm install -g @openai/codex --quiet
+  command -v gemini &>/dev/null || npm install -g @google/gemini-cli --quiet
+else
+  echo "[ai] Skipping AI CLI tools on ARM"
+fi
 
 # Set zsh as default shell
 if [ "$SHELL" != "$(which zsh)" ]; then
