@@ -24,7 +24,7 @@ echo "[backup] Saved to $BACKUP_DIR"
 echo "[deps] Installing dependencies..."
 sudo apt-get update -qq
 sudo apt-get install -y -qq \
-  tmux git curl unzip wget python3-pip \
+  tmux git curl unzip wget python3-pip pipx \
   ripgrep fd-find fzf zoxide \
   bat mosh jq ncdu btop \
   build-essential
@@ -66,13 +66,13 @@ fi
 # tldr
 if ! command -v tldr &>/dev/null; then
   echo "[deps] Installing tldr..."
-  sudo apt-get install -y -qq tldr 2>/dev/null || pip3 install tldr --quiet
+  sudo apt-get install -y -qq tldr 2>/dev/null || pipx install tldr --quiet 2>/dev/null || pip3 install --break-system-packages tldr --quiet
 fi
 
 # thefuck
 if ! command -v thefuck &>/dev/null; then
   echo "[deps] Installing thefuck..."
-  pip3 install thefuck --quiet
+  pipx install thefuck --quiet 2>/dev/null || pip3 install --break-system-packages thefuck --quiet
 fi
 
 # Lazygit
