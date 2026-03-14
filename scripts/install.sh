@@ -26,7 +26,7 @@ sudo apt-get update -qq
 sudo apt-get install -y -qq \
   tmux git curl unzip wget python3-pip \
   ripgrep fd-find fzf zoxide \
-  bat mosh jq ncdu btop neofetch \
+  bat mosh jq ncdu btop \
   build-essential
 
 # WSL vs native Linux packages
