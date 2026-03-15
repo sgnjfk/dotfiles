@@ -56,9 +56,17 @@ def get_local_ip():
   finally:
     s.close()
 
-def find_free_port():
-  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind(("", 0)); return s.getsockname()[1]
+def find_free_port(start=40000, end=50000):
+  import random
+  ports = list(range(start, end + 1))
+  random.shuffle(ports)
+  for port in ports:
+    try:
+      with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("", port)); return port
+    except OSError:
+      continue
+  raise RuntimeError(f"No free port in range {start}-{end}")
 
 # ── Markdown rendering ─────────────────────────────────────────────────────
 
