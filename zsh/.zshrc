@@ -53,6 +53,7 @@ fuck() {
 # ===== Aliases =====
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
 alias ss="$HOME/dotfiles/scripts/sessionizer.sh"
+alias cm="codex-multi"
 csf() { grep -H '.' ~/dotfiles/docs/*-cheatsheet.md | sed 's|.*/\(.*\)-cheatsheet.md:|\1: |' | fzf --query="$*"; }
 # WSL-specific
 if grep -qi microsoft /proc/version 2>/dev/null; then
@@ -102,3 +103,4 @@ alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh 
 ask() { claude -p "$*" --allowedTools "WebSearch,WebFetch" | glow -; }
 askg() { gemini -p "$*" -o text --yolo 2>/dev/null | glow -; }
 askx() { codex exec --skip-git-repo-check "$*" 2>&1 | grep -v "^OpenAI\|^---\|^workdir\|^model\|^provider\|^approval\|^sandbox\|^reasoning\|^session\|^user\|^mcp\|^tokens" | glow -; }
+export COLORTERM=truecolor

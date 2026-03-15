@@ -86,6 +86,10 @@ csf rename session  # fuzzy search cheatsheet
 | `askx "..."` | Hỏi Codex (non-interactive) |
 | `opw file` | Mở file trên Windows (PDF, Excel, Word, MD...) |
 | `opw folder/` | Serve folder — browse, View/Download từng file (port 40000-50000) |
+| `cm` | codex-multi — quản lý nhiều Codex CLI accounts |
+| `cm ls` | List accounts |
+| `cm use <name>` | Switch account (codex + codex-multi) |
+| `cm add <name>` | Login account mới (hỗ trợ SSH headless) |
 | `clip` | Copy text vào clipboard Windows (`echo "abc" \| clip`) |
 
 ## Git Aliases
