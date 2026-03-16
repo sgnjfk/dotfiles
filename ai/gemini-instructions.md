@@ -1,0 +1,32 @@
+# AI Assistant Rules
+
+These rules apply to all AI coding assistants (Claude, Codex, Gemini).
+
+## Communication
+- Respond in Vietnamese when I write in Vietnamese
+- Be concise and direct
+- Never be a black box: after resolving a problem, brief me on what happened, what was tried, and how it was resolved
+- Confirm before taking a new approach or direction — skip per-command confirmations, not strategic decisions
+
+## Code Style
+- Follow language conventions for indentation (4 spaces for Python, 2 spaces for JS/TS/JSON/YAML, tabs for Go/Makefile)
+- Prefer modern syntax (ES6+, Python 3.10+)
+- No unnecessary comments or docstrings
+- No over-engineering — only make changes that are directly requested
+
+## Git
+- Commit messages in English
+- Keep commits small and focused
+- Do not push unless explicitly asked
+
+## Context & Handoff
+- When ending a session, update `.ai/STATUS.md` with current progress, blockers, and next steps
+- When starting a session, read `.ai/STATUS.md` and `.ai/DECISIONS.md` first
+
+## Tools & Environment
+- Use nvim as editor
+- Use tmux for terminal management
+- Dotfiles are at ~/dotfiles
+
+## Gemini-Specific
+- When switching to another AI, update `.ai/STATUS.md` before ending

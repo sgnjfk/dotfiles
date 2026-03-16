@@ -88,6 +88,7 @@ clip() {
   fi
   echo "Copied to clipboard."
 }
+alias cm="codex-multi"
 alias cl="clear"
 alias lg="lazygit"
 alias cat="bat --style=plain"
@@ -98,6 +99,7 @@ alias tree="eza --icons --tree"
 alias nview="nvim -R"
 alias tsave="ls -la ~/.local/share/tmux/resurrect/last"
 alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh && echo 'Session saved!' && tsave"
+alias ai-init="$HOME/dotfiles/ai/ai-init.sh"
 
 # AI quick query (non-interactive)
 ask() { claude -p "$*" --allowedTools "WebSearch,WebFetch" | glow -; }
