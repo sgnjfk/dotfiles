@@ -54,6 +54,7 @@ fuck() {
 alias cs="$HOME/dotfiles/scripts/cheatsheet.sh"
 alias ss="$HOME/dotfiles/scripts/sessionizer.sh"
 alias cm="codex-multi"
+alias pi="$HOME/dotfiles/scripts/pi.sh"
 csf() { grep -H '.' ~/dotfiles/docs/*-cheatsheet.md | sed 's|.*/\(.*\)-cheatsheet.md:|\1: |' | fzf --query="$*"; }
 # WSL-specific
 if grep -qi microsoft /proc/version 2>/dev/null; then

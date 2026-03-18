@@ -68,6 +68,22 @@ Gõ sai lệnh → `fuck` → tự sửa lệnh
 `cat f.json | jq '.items[]'` Lấy array từ JSON
 `curl api | jq .` Format JSON từ API
 
+## pi (Pi server CLI wrapper)
+`pi status` Xem tất cả containers
+`pi disk` Disk usage
+`pi ports` Port mappings
+`pi <svc> logs` Tail logs (follow, last 50)
+`pi <svc> restart` Restart container
+`pi <svc> stop` / `pi <svc> start` Stop/start
+`pi <svc> sh` Shell vào container
+`pi <svc> exec <cmd>` Chạy lệnh trong container
+`pi <svc> info` Chi tiết container
+`pi oc config` Edit openclaw.json (nvim)
+`pi oc tui` OpenClaw TUI
+`pi oc login` WhatsApp login
+`pi oc backup` Backup OpenClaw data
+Short names: oc lb n8n owui adg npm wg uk hp pdf ppl uma ab pt
+
 ## AI quick query
 `ask "câu hỏi"` Hỏi Claude (non-interactive)
 `askg "câu hỏi"` Hỏi Gemini (non-interactive)

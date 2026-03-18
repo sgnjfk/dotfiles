@@ -1,7 +1,7 @@
 {
   "statusLine": {
     "type": "command",
-    "command": "bash /home/vp/.claude/statusline-command.sh"
+    "command": "bash /home/pp/.claude/statusline-command.sh"
   },
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true
