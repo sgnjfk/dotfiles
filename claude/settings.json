@@ -3,6 +3,6 @@
     "type": "command",
     "command": "bash /home/vp/.claude/statusline-command.sh"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "model": "sonnet"
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true
 }
