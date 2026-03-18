@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/go/bin:/usr/local/bin:$PATH
 
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
@@ -92,8 +92,10 @@ clip() {
 alias cm="codex-multi"
 alias cl="clear"
 alias lg="lazygit"
-alias cat="bat --style=plain"
-alias catn="bat"
+if command -v bat &> /dev/null; then
+  alias cat="bat --style=plain"
+  alias catn="bat"
+fi
 alias ls="eza --icons"
 alias ll="eza --icons -la"
 alias tree="eza --icons --tree"
