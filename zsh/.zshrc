@@ -103,8 +103,10 @@ alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh 
 alias ai-init="$HOME/dotfiles/ai/ai-init.sh"
 alias ai-docs="glow $HOME/dotfiles/ai/README.md"
 
-# AI quick query (non-interactive)
-ask() { claude -p "$*" --allowedTools "WebSearch,WebFetch" | glow -; }
-askg() { gemini -p "$*" -o text --yolo 2>/dev/null | glow -; }
-askx() { codex exec --skip-git-repo-check "$*" 2>&1 | grep -v "^OpenAI\|^---\|^workdir\|^model\|^provider\|^approval\|^sandbox\|^reasoning\|^session\|^user\|^mcp\|^tokens" | glow -; }
+# AI quick query (non-interactive) — all run from ~/ask so history stays in one place
+ASK_HOME="$HOME/ask"
+[[ -d "$ASK_HOME" ]] || mkdir -p "$ASK_HOME"
+ask() { (cd "$ASK_HOME" && claude -p "$*" --allowedTools "WebSearch,WebFetch") | glow -; }
+askg() { (cd "$ASK_HOME" && gemini -p "$*" -o text --yolo) 2>/dev/null | glow -; }
+askx() { (cd "$ASK_HOME" && codex exec --skip-git-repo-check "$*") 2>&1 | grep -v "^OpenAI\|^---\|^workdir\|^model\|^provider\|^approval\|^sandbox\|^reasoning\|^session\|^user\|^mcp\|^tokens" | glow -; }
 export COLORTERM=truecolor
