@@ -21,7 +21,8 @@ These rules apply to all AI coding assistants (Claude, Codex, Gemini).
 
 ## Context & Handoff
 - When ending a session, update `.ai/STATUS.md` with current progress, blockers, and next steps
-- When starting a session, read `.ai/STATUS.md` and `.ai/DECISIONS.md` first
+- When ending a session, write a session summary to `.ai/sessions/YYYY-MM-DD-<topic>.md` with: what was done, decisions made, what didn't work, and open items. This is the primary handoff artifact — STATUS.md is the quick-glance state, session summaries are the full context.
+- When starting a session, read `.ai/STATUS.md`, `.ai/DECISIONS.md`, and recent session summaries first
 - Read `AGENTS.md` (or equivalent) at project root for project-specific rules
 
 ## Tools & Environment
