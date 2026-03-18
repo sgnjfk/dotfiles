@@ -13,32 +13,42 @@ PROJECT_NAME=$(basename "$(realpath "$PROJECT_PATH")")
 
 echo "Initializing AI context for: $PROJECT_NAME"
 
-# Create .ai directory
+safe_copy() {
+  if [ -f "$2" ]; then
+    echo "  SKIP $2 (already exists)"
+  else
+    cp "$1" "$2"
+    echo "  CREATE $2"
+  fi
+}
+
 mkdir -p "$PROJECT_PATH/.ai"
-cp "$TEMPLATES/STATUS.md" "$PROJECT_PATH/.ai/STATUS.md"
-cp "$TEMPLATES/DECISIONS.md" "$PROJECT_PATH/.ai/DECISIONS.md"
-cp "$TEMPLATES/GLOSSARY.md" "$PROJECT_PATH/.ai/GLOSSARY.md"
+safe_copy "$TEMPLATES/STATUS.md" "$PROJECT_PATH/.ai/STATUS.md"
+safe_copy "$TEMPLATES/DECISIONS.md" "$PROJECT_PATH/.ai/DECISIONS.md"
+safe_copy "$TEMPLATES/GLOSSARY.md" "$PROJECT_PATH/.ai/GLOSSARY.md"
 
-# Create AGENTS.md from template
-sed "s/\[PROJECT_NAME\]/$PROJECT_NAME/" "$TEMPLATES/AGENTS.md" > "$PROJECT_PATH/AGENTS.md"
+if [ -f "$PROJECT_PATH/AGENTS.md" ]; then
+  echo "  SKIP AGENTS.md (already exists)"
+else
+  sed "s/\[PROJECT_NAME\]/$PROJECT_NAME/" "$TEMPLATES/AGENTS.md" > "$PROJECT_PATH/AGENTS.md"
+  echo "  CREATE AGENTS.md"
+fi
 
-# Symlinks for cross-tool compatibility
+# Symlinks — always safe to recreate
 cd "$PROJECT_PATH"
 ln -sf AGENTS.md CLAUDE.md
 ln -sf AGENTS.md GEMINI.md
+echo "  LINK CLAUDE.md → AGENTS.md"
+echo "  LINK GEMINI.md → AGENTS.md"
 
-# Aider project config — auto-read AGENTS.md
-cat > .aider.conf.yml << 'EOF'
+if [ -f .aider.conf.yml ]; then
+  echo "  SKIP .aider.conf.yml (already exists)"
+else
+  cat > .aider.conf.yml << 'EOF'
 read: AGENTS.md
 EOF
+  echo "  CREATE .aider.conf.yml"
+fi
 
-echo "Created:"
-echo "  AGENTS.md          — Project instructions (edit this)"
-echo "  CLAUDE.md          — Symlink → AGENTS.md"
-echo "  GEMINI.md          — Symlink → AGENTS.md"
-echo "  .aider.conf.yml    — Aider config (reads AGENTS.md)"
-echo "  .ai/STATUS.md      — Session handoff status"
-echo "  .ai/DECISIONS.md   — Architecture decisions"
-echo "  .ai/GLOSSARY.md    — Domain terms"
 echo ""
-echo "Next: Edit AGENTS.md with your project details"
+echo "Done. Edit AGENTS.md with your project details."

@@ -100,6 +100,7 @@ alias nview="nvim -R"
 alias tsave="ls -la ~/.local/share/tmux/resurrect/last"
 alias tss="tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh && echo 'Session saved!' && tsave"
 alias ai-init="$HOME/dotfiles/ai/ai-init.sh"
+alias ai-docs="glow $HOME/dotfiles/ai/README.md"
 
 # AI quick query (non-interactive)
 ask() { claude -p "$*" --allowedTools "WebSearch,WebFetch" | glow -; }
