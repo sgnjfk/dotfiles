@@ -140,8 +140,9 @@ MD_TEMPLATE = """<!DOCTYPE html>
 <title>{title}</title>
 <link id="theme-css" rel="stylesheet" href="{css_url}">
 <style>
-  body {{ background: {body_bg}; color: {body_color}; padding: 48px 32px 32px; margin: 0; transition: background .2s; }}
-  .markdown-body {{ max-width: 960px; margin: 0 auto; }}
+  body {{ background: {body_bg}; color: {body_color}; padding: 48px 32px 32px; margin: 0; transition: background .2s; font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace; }}
+  .markdown-body {{ max-width: 960px; margin: 0 auto; font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace; }}
+  .markdown-body code, .markdown-body pre {{ font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace; }}
   {extra_css}
 
   /* Theme bar */
