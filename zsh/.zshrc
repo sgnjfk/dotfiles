@@ -108,7 +108,13 @@ alias ai-docs="glow $HOME/dotfiles/ai/README.md"
 # AI quick query (non-interactive) — all run from ~/ask so history stays in one place
 ASK_HOME="$HOME/ask"
 [[ -d "$ASK_HOME" ]] || mkdir -p "$ASK_HOME"
-ask() { (cd "$ASK_HOME" && claude -p "$*" --allowedTools "WebSearch,WebFetch") | glow -; }
-askg() { (cd "$ASK_HOME" && gemini -p "$*" -o text --yolo) 2>/dev/null | glow -; }
+ask() {
+  if [[ "$1" == "-c" ]]; then shift; (cd "$ASK_HOME" && claude -p "$*" -c --allowedTools "WebSearch,WebFetch") | glow -
+  else (cd "$ASK_HOME" && claude -p "$*" --allowedTools "WebSearch,WebFetch") | glow -; fi
+}
+askg() {
+  if [[ "$1" == "-c" ]]; then shift; (cd "$ASK_HOME" && gemini -p "$*" -r latest -o text --yolo) 2>/dev/null | glow -
+  else (cd "$ASK_HOME" && gemini -p "$*" -o text --yolo) 2>/dev/null | glow -; fi
+}
 askx() { (cd "$ASK_HOME" && codex exec --skip-git-repo-check "$*") 2>&1 | grep -v "^OpenAI\|^---\|^workdir\|^model\|^provider\|^approval\|^sandbox\|^reasoning\|^session\|^user\|^mcp\|^tokens" | glow -; }
 export COLORTERM=truecolor
