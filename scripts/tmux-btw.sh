@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# Ensure nvm/node and ~/.local/bin are in PATH when run from tmux run-shell
+export PATH="$HOME/.local/bin:$HOME/.nvm/versions/node/$(ls "$HOME/.nvm/versions/node/" 2>/dev/null | tail -1)/bin:$PATH"
+
 pane_id="${1:-${TMUX_PANE:-}}"
 provider="${2:-auto}"
 buffer_name="${3:-}"
