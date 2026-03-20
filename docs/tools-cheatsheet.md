@@ -105,6 +105,11 @@ Ctrl+C để tắt server
 `cat file.txt | clip` Copy nội dung file vào clipboard
 Hoạt động trong tmux (bypass qua SSH TTY gốc).
 
+## grab (copy file từ Windows Downloads)
+`grab` Mở TUI chọn file gần nhất từ Windows Downloads
+Prompt: n (số file), Source, Dest — Enter giữ mặc định, gõ để thay
+`j/k` Di chuyển, `space` chọn/bỏ chọn, `enter` copy, `q` thoát
+
 ## Cheatsheet
 `cs tmux` Xem cheatsheet (glow)
 `csf rename session` Tìm nhanh trong cheatsheet (fzf)

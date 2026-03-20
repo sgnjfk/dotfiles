@@ -92,6 +92,7 @@ csf rename session  # fuzzy search cheatsheet
 | `cm ls` | List accounts |
 | `cm use <name>` | Switch account (codex + codex-multi) |
 | `cm add <name>` | Login account mới (hỗ trợ SSH headless) |
+| `grab` | Copy file gần nhất từ Windows Downloads (TUI picker) |
 | `clip` | Copy text vào clipboard Windows (`echo "abc" \| clip`) |
 
 ## Git Aliases
