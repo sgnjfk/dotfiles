@@ -37,6 +37,8 @@ Lần đầu mở `nvim`, chờ ~1-2 phút để lazy.nvim cài plugins và Maso
 ├── scripts/
 │   ├── install.sh     (cài đặt + link config)
 │   ├── cheatsheet.sh  (xem cheatsheet)
+│   ├── tmux-btw.sh    (BTW side question popup)
+│   ├── tmux-btw-view.sh (BTW output viewer)
 │   └── opw.py         (mở file trên Windows từ Linux)
 └── docs/
     ├── nvim-cheatsheet.md
@@ -147,6 +149,7 @@ csf rename session  # fuzzy search cheatsheet
 | `Ctrl+b Ctrl+s` | Save session |
 | `Ctrl+b Ctrl+r` | Restore session |
 | `Ctrl+b r` | Reload config |
+| `Alt+b` / `Ctrl+b b` | BTW — popup hỏi nhanh (codex/gemini) |
 
 > Session tự save mỗi 5 phút và tự restore khi mở tmux.
 

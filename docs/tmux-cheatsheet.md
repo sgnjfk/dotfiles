@@ -62,6 +62,10 @@ Hoặc: giữ Shift + kéo chuột để select bình thường (bypass tmux).
 `C-b t` Đồng hồ to
 `C-b r` Reload config
 
+## BTW (side question popup)
+`Alt+b` hoặc `C-b b` Mở popup hỏi nhanh (codex/gemini)
+Options trong prompt: `-n` no context, `-c 250` số dòng context, `-r` rich context (git files, commits)
+
 ## Save/Restore session
 `C-b C-s` Save session thủ công
 `C-b C-r` Restore session
