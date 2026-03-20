@@ -15,7 +15,7 @@ cleanup() {
 trap cleanup EXIT
 
 if command -v glow >/dev/null 2>&1; then
-  glow -p "$output_file"
+  glow -p -w "$(tput cols)" "$output_file"
 else
   less +G -R "$output_file"
 fi
