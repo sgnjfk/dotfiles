@@ -252,7 +252,9 @@ echo "[scripts] Linking scripts..."
 mkdir -p ~/.local/bin
 ln -sf "$DOTFILES/scripts/cheatsheet.sh" ~/.local/bin/cheatsheet.sh
 ln -sf "$DOTFILES/scripts/sessionizer.sh" ~/.local/bin/sessionizer.sh
-chmod +x "$DOTFILES/scripts/cheatsheet.sh" "$DOTFILES/scripts/sessionizer.sh"
+ln -sf "$DOTFILES/scripts/tmux-btw.sh" ~/.local/bin/tmux-btw.sh
+ln -sf "$DOTFILES/scripts/tmux-btw-view.sh" ~/.local/bin/tmux-btw-view.sh
+chmod +x "$DOTFILES/scripts/cheatsheet.sh" "$DOTFILES/scripts/sessionizer.sh" "$DOTFILES/scripts/tmux-btw.sh" "$DOTFILES/scripts/tmux-btw-view.sh"
 echo "[scripts] Done"
 
 echo ""
